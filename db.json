@@ -1,0 +1,182 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "nader11",
+      "email": "nader@gmail.com",
+      "password": "nader1212",
+      "role": "user"
+    },
+    {
+      "id": 2,
+      "username": "ahmad11",
+      "email": "ahmad@gmail.com",
+      "password": "ahmad1212",
+      "role": "admin"
+    },
+    {
+      "id": 3,
+      "username": "sara_dev",
+      "email": "sara@devs.net",
+      "password": "saraPass123",
+      "role": "user"
+    },
+    {
+      "id": 4,
+      "username": "osama_mgr",
+      "email": "osama@management.com",
+      "password": "osamaSecure456",
+      "role": "admin"
+    },
+    {
+      "id": 5,
+      "username": "lina_tutor",
+      "email": "lina@school.edu",
+      "password": "linaTeach456",
+      "role": "user"
+    },
+    {
+      "id": 6,
+      "username": "faris_tester",
+      "email": "faris@test.net",
+      "password": "farisTestPass",
+      "role": "admin"
+    },
+    {
+      "id": 7,
+      "username": "hassan_app",
+      "email": "hassan@app.com",
+      "password": "hassanAppPass",
+      "role": "user"
+    },
+    {
+      "id": 8,
+      "username": "rana_sys",
+      "email": "rana@system.org",
+      "password": "ranaSysPass",
+      "role": "admin"
+    }
+  ],
+  "forms": [
+    {
+      "id": 101,
+      "title": "IQ Test",
+      "description": "General iq testing that tests your skills in numerical and logical reasoning.",
+      "status": "active",
+      "createdAt": "2025-12-03",
+      "questionsNumber": "30",
+      "questions": [
+        { "id": 1, "type": "mcq", "question": "Which number completes the series: 3, 5, 8, 12, 17, ?", "options": ["20", "23", "24", "26"], "correctAnswer": "23" },
+        { "id": 2, "type": "true_false", "question": "A dozen equals 12 units.", "correctAnswer": true },
+        { "id": 3, "type": "text", "question": "What number is missing from the pattern: 1, 4, 9, __, 25?", "correctanswer": "16" },
+        { "id": 4, "type": "dropdown", "question": "Which word is the odd one out?", "options": ["Apple", "Banana", "Grape", "Carrot"], "correctAnswer": "Carrot" },
+        { "id": 5, "type": "mcq", "question": "Which direction would you face if you turn 90 degrees clockwise from North?", "options": ["South", "East", "West", "North-East"], "correctAnswer": "East" },
+        { "id": 6, "type": "mcq", "question": "Find the missing letter in the sequence: A, C, E, G, ?", "options": ["H", "I", "J", "K"], "correctAnswer": "I" },
+        { "id": 7, "type": "true_false", "question": "If all cats are animals, and some animals are black, then some cats must be black.", "correctAnswer": false },
+        { "id": 8, "type": "text", "question": "What is the next fraction in the sequence: 1/2, 1/4, 1/8, ___?", "correctanswer": "1/16" },
+        { "id": 9, "type": "mcq", "question": "Which shape is different: Square, Circle, Triangle, Rectangle?", "options": ["Square", "Circle", "Triangle", "Rectangle"], "correctAnswer": "Circle" },
+        { "id": 10, "type": "mcq", "question": "Which word is most similar to 'Profound'?", "options": ["Shallow", "Deep", "Simple", "Wide"], "correctAnswer": "Deep" },
+        { "id": 11, "type": "true_false", "question": "If you have 5 fingers, you have 2 hands.", "correctAnswer": true },
+        { "id": 12, "type": "text", "question": "What is 15% of 200?", "correctanswer": "30" },
+        { "id": 13, "type": "mcq", "question": "If 'FEW' is coded as '26', how is 'TEN' coded? (A=1, B=2...)", "options": ["29", "39", "40", "43"], "correctAnswer": "39" },
+        { "id": 14, "type": "mcq", "question": "What is the value of $(2 + 3) \times 4$?", "options": ["9", "14", "20", "24"], "correctAnswer": "20" },
+        { "id": 15, "type": "true_false", "question": "A cube has 8 faces.", "correctAnswer": false },
+        { "id": 16, "type": "text", "question": "What is the capital of France?", "correctanswer": "Paris" },
+        { "id": 17, "type": "mcq", "question": "Which animal is the odd one out: Dog, Cat, Lion, Eagle?", "options": ["Dog", "Cat", "Lion", "Eagle"], "correctAnswer": "Eagle" },
+        { "id": 18, "type": "mcq", "question": "Choose the correct analogy: Foot is to shoe as Hand is to ___.", "options": ["Finger", "Glove", "Arm", "Wrist"], "correctAnswer": "Glove" },
+        { "id": 19, "type": "true_false", "question": "A person traveling 60 miles per hour will cover 60 miles in one hour.", "correctAnswer": true },
+        { "id": 20, "type": "text", "question": "If yesterday was Tuesday, what is the day after tomorrow?", "correctanswer": "Friday" },
+        { "id": 21, "type": "mcq", "question": "What is the next number in the sequence: 1, 1, 2, 3, 5, 8, ?", "options": ["11", "13", "14", "16"], "correctAnswer": "13" },
+        { "id": 22, "type": "mcq", "question": "If all roses are flowers, and all flowers fade quickly, then all roses fade quickly.", "options": ["True", "False", "Cannot be determined"], "correctAnswer": "True" },
+        { "id": 23, "type": "true_false", "question": "The sum of all angles in a triangle is 360 degrees.", "correctAnswer": false },
+        { "id": 24, "type": "text", "question": "What is the result of $10 - 2 \times 3$?", "correctanswer": "4" },
+        { "id": 25, "type": "dropdown", "question": "Which number is prime: 9, 15, 17, 21?", "options": ["9", "15", "17", "21"], "correctAnswer": "17" },
+        { "id": 26, "type": "dropdown", "question": "Choose the word that fits: A flock of birds is to a school of fish as a pack of wolves is to a ___ of lions.", "options": ["Clump", "Pride", "Group", "Swarm"], "correctAnswer": "Pride" },
+        { "id": 27, "type": "mcq", "question": "If you rearrange 'NAPLE', you get the name of a fruit. Which fruit?", "options": ["Melon", "Plum", "Apple", "Lemon"], "correctAnswer": "Apple" },
+        { "id": 28, "type": "true_false", "question": "Every four years has 366 days (leap year).", "correctAnswer": true },
+        { "id": 29, "type": "text", "question": "A is the father of B. B is the mother of C. What is A's relation to C?", "correctanswer": "Grandfather" },
+        { "id": 30, "type": "dropdown", "question": "Which letter is out of place: A, C, E, F, G, I?", "options": ["A", "E", "F", "I"], "correctAnswer": "F" }
+      ]
+    },
+    {
+      "id": 303,
+      "title": "English Test and Logic Puzzles",
+      "description": "Tests verbal ability, grammar, and complex logical reasoning.",
+      "status": "active",
+      "createdAt": "2026-01-01",
+      "questionsNumber": "30",
+      "questions": [
+        { "id": 1, "type": "mcq", "question": "Select the synonym for 'Mellifluous'.", "options": ["Harmonious", "Cacophonous", "Bitter", "Loud"], "correctAnswer": "Harmonious" },
+        { "id": 2, "type": "mcq", "question": "Select the antonym for 'Lethargy'.", "options": ["Sloth", "Vigor", "Drowsiness", "Calm"], "correctAnswer": "Vigor" },
+        { "id": 3, "type": "true_false", "question": "'She went to the store, and he went to the bank.' is a compound sentence.", "correctAnswer": true },
+        { "id": 4, "type": "text", "question": "Complete the analogy: Day is to Sun as Night is to ___?", "correctanswer": "Moon" },
+        { "id": 5, "type": "mcq", "question": "Identify the subject in the sentence: 'Running every morning keeps me healthy.'", "options": ["Running every morning", "morning", "me", "healthy"], "correctAnswer": "Running every morning" },
+        { "id": 6, "type": "mcq", "question": "Which of these words is spelled correctly?", "options": ["Maintainence", "Maintanance", "Maintenance", "Maintainance"], "correctAnswer": "Maintenance" },
+        { "id": 7, "type": "true_false", "question": "The word 'data' is always treated as singular in modern American English.", "correctAnswer": true },
+        { "id": 8, "type": "text", "question": "What is the collective noun for a group of crows?", "correctanswer": "Murder" },
+        { "id": 9, "type": "dropdown", "question": "Choose the correct preposition: 'He is accustomed ___ the noise.'", "options": ["at", "with", "to", "for"], "correctAnswer": "to" },
+        { "id": 10, "type": "mcq", "question": "Which verb tense is 'had been running'?", "options": ["Past Continuous", "Past Perfect", "Past Perfect Continuous", "Future Perfect"], "correctAnswer": "Past Perfect Continuous" },
+        { "id": 11, "type": "mcq", "question": "Logical deduction: All dogs bark. Rover is a dog. Therefore:", "options": ["All dogs are named Rover", "Rover barks", "Only Rover barks", "Some dogs are not Rover"], "correctAnswer": "Rover barks" },
+        { "id": 12, "type": "true_false", "question": "The semicolon is used to separate items in a series that already contain commas.", "correctAnswer": true },
+        { "id": 13, "type": "text", "question": "What is the plural of 'criterion'?", "correctanswer": "Criteria" },
+        { "id": 14, "type": "mcq", "question": "Which word is the main noun in the sentence: 'The tall, dark, and handsome man smiled.'?", "options": ["tall", "dark", "handsome", "man"], "correctAnswer": "man" },
+        { "id": 15, "type": "mcq", "question": "Which word is the odd one out?", "options": ["Cautious", "Careful", "Wary", "Reckless"], "correctAnswer": "Reckless" },
+        { "id": 16, "type": "text", "question": "What is the gerund in the sentence: 'Swimming is great exercise.'", "correctanswer": "Swimming" },
+        { "id": 17, "type": "mcq", "question": "Which sentence has a dangling modifier?", "options": ["After turning the corner, the police officer saw the suspect.", "Driving fast, the car skidded.", "To win the prize, hard work is required.", "Having finished the report, she took a break."], "correctAnswer": "To win the prize, hard work is required." },
+        { "id": 18, "type": "true_false", "question": "'Who' should be used when referring to the object of a verb or preposition.", "correctAnswer": false },
+        { "id": 19, "type": "text", "question": "Define the figure of speech 'oxymoron' with one word.", "correctanswer": "Contradiction" },
+        { "id": 20, "type": "dropdown", "question": "Choose the correct pronoun: 'Between you and ___'", "options": ["I", "me", "myself", "himself"], "correctAnswer": "me" },
+        { "id": 21, "type": "mcq", "question": "Logic: All A are B. No C are A. Therefore:", "options": ["All B are C", "No C are B", "Some B are C", "No conclusion"], "correctAnswer": "No conclusion" },
+        { "id": 22, "type": "mcq", "question": "Which of the following is a complete sentence?", "options": ["The dog that ran away.", "Ran quickly down the street.", "The dog barked loudly.", "Because it was raining."], "correctAnswer": "The dog barked loudly." },
+        { "id": 23, "type": "true_false", "question": "The apostrophe in 'dogs' bowls' correctly indicates plural possession.", "correctAnswer": true },
+        { "id": 24, "type": "text", "question": "What is a four-line stanza called?", "correctanswer": "Quatrain" },
+        { "id": 25, "type": "mcq", "question": "Identify the conjunction: 'He failed the test because he didn't study.'", "options": ["failed", "test", "because", "didn't"], "correctAnswer": "because" },
+        { "id": 26, "type": "text", "question": "Complete the sentence: 'Neither John ___ Mary were at the party.'", "correctanswer": "nor" },
+        { "id": 27, "type": "mcq", "question": "If a clock takes 5 seconds to strike 5 (4 intervals), how long will it take to strike 10 (9 intervals)?", "options": ["10 seconds", "11.25 seconds", "12.5 seconds", "15 seconds"], "correctAnswer": "11.25 seconds" },
+        { "id": 28, "type": "true_false", "question": "In formal writing, it is acceptable to end a sentence with a preposition.", "correctAnswer": false },
+        { "id": 29, "type": "text", "question": "What is the past participle of the irregular verb 'swim'?", "correctanswer": "Swum" },
+        { "id": 30, "type": "dropdown", "question": "Which word is an adverb?", "options": ["Quick", "Quickly", "Quicker", "Fastness"], "correctAnswer": "Quickly" }
+      ]
+    },
+    {
+      "id": 404,
+      "title": "Programming Problem Solving",
+      "description": "Tests fundamental knowledge of data structures, algorithms, and syntax.",
+      "status": "active",
+      "createdAt": "2026-03-01",
+      "questionsNumber": "30",
+      "questions": [
+        { "id": 1, "type": "mcq", "question": "What does HTML stand for?", "options": ["HyperTool Markup Language", "Home Tool Markup Language", "HyperText Markup Language", "Hyperlink Text Messaging Language"], "correctAnswer": "HyperText Markup Language" },
+        { "id": 2, "type": "mcq", "question": "Which is NOT an object-oriented programming language?", "options": ["Java", "Python", "C++", "C"], "correctAnswer": "C" },
+        { "id": 3, "type": "true_false", "question": "Python uses strict type declaration for variables.", "correctAnswer": false },
+        { "id": 4, "type": "text", "question": "What command is used in Git to save changes to the local repository?", "correctanswer": "git commit" },
+        { "id": 5, "type": "mcq", "question": "What is the time complexity of searching in a sorted array using Binary Search?", "options": ["O(n)", "O(n^2)", "O(log n)", "O(1)"], "correctAnswer": "O(log n)" },
+        { "id": 6, "type": "mcq", "question": "Which HTTP method is typically used to retrieve data?", "options": ["POST", "DELETE", "PUT", "GET"], "correctAnswer": "GET" },
+        { "id": 7, "type": "true_false", "question": "SQL stands for Structured Query Language.", "correctAnswer": true },
+        { "id": 8, "type": "text", "question": "What is a variable declared outside of a function called?", "correctanswer": "Global variable" },
+        { "id": 9, "type": "dropdown", "question": "What is the primary purpose of a 'while' loop?", "options": ["Selection", "Repetition/Iteration", "Sequencing", "Condition"], "correctAnswer": "Repetition/Iteration" },
+        { "id": 10, "type": "mcq", "question": "Which data structure uses the Last-In, First-Out (LIFO) principle?", "options": ["Queue", "Array", "Stack", "Linked List"], "correctAnswer": "Stack" },
+        { "id": 11, "type": "mcq", "question": "What is the default port for HTTPS?", "options": ["80", "21", "443", "22"], "correctAnswer": "443" },
+        { "id": 12, "type": "true_false", "question": "An 'interpreter' executes code line by line.", "correctAnswer": true },
+        { "id": 13, "type": "text", "question": "What does CSS stand for?", "correctanswer": "Cascading Style Sheets" },
+        { "id": 14, "type": "mcq", "question": "Which type of error is NOT typically detected by the compiler?", "options": ["Syntax Error", "Logic Error", "Type Error", "Compilation Error"], "correctAnswer": "Logic Error" },
+        { "id": 15, "type": "true_false", "question": "In Python, `2 + 2 == 5` evaluates to `False`.", "correctAnswer": true },
+        { "id": 16, "type": "text", "question": "What is the process of finding and fixing errors in code called?", "correctanswer": "Debugging" },
+        { "id": 17, "type": "mcq", "question": "Which key principle involves bundling data and methods that operate on the data?", "options": ["Polymorphism", "Inheritance", "Abstraction", "Encapsulation"], "correctAnswer": "Encapsulation" },
+        { "id": 18, "type": "mcq", "question": "Which database model organizes data into tables?", "options": ["Document", "Graph", "Relational", "Key-Value"], "correctAnswer": "Relational" },
+        { "id": 19, "type": "true_false", "question": "A primary key in a database must contain unique values.", "correctAnswer": true },
+        { "id": 20, "type": "text", "question": "What is the result of `7 % 3` (the modulo operator) in most programming languages?", "correctanswer": "1" },
+        { "id": 21, "type": "mcq", "question": "Which language is often used for front-end web development to add interactivity?", "options": ["C#", "Ruby", "PHP", "JavaScript"], "correctAnswer": "JavaScript" },
+        { "id": 22, "type": "mcq", "question": "What is a 'fork' in the context of Git?", "options": ["A merge conflict", "A copy of a repository", "A specific branch", "A pull request"], "correctAnswer": "A copy of a repository" },
+        { "id": 23, "type": "true_false", "question": "Recursion involves a function calling itself.", "correctAnswer": true },
+        { "id": 24, "type": "text", "question": "What does API stand for?", "correctanswer": "Application Programming Interface" },
+        { "id": 25, "type": "dropdown", "question": "Which is a valid variable name in most languages?", "options": ["123user", "user-name", "user_name", "for"], "correctAnswer": "user_name" },
+        { "id": 26, "type": "mcq", "question": "What is the process of breaking down a complex problem into smaller, manageable parts?", "options": ["Inheritance", "Decomposition", "Encapsulation", "Polymorphism"], "correctAnswer": "Decomposition" },
+        { "id": 27, "type": "true_false", "question": "The `finally` block in exception handling will execute whether an exception occurs or not.", "correctAnswer": true },
+        { "id": 28, "type": "text", "question": "Which network addressing protocol maps IP addresses to physical MAC addresses?", "correctanswer": "ARP" },
+        { "id": 29, "type": "mcq", "question": "Which database is document-based and often used for flexible data storage?", "options": ["PostgreSQL", "MongoDB", "Oracle", "MySQL"], "correctAnswer": "MongoDB" },
+        { "id": 30, "type": "dropdown", "question": "Which network layer is responsible for logical addressing (IP addresses)?", "options": ["Physical Layer", "Data Link Layer", "Network Layer", "Transport Layer"], "correctAnswer": "Network Layer" }
+      ]
+    }
+  ]
+}
