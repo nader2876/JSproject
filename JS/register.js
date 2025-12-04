@@ -10,6 +10,7 @@ fetch("db.json")
     .catch(error => console.error("Error loading JSON:", error));
 
 document.getElementById("registerForm").addEventListener("submit", function(e) {
+
     e.preventDefault();
 
     let username = document.getElementById("username").value.trim();
