@@ -1,5 +1,5 @@
 // Load initial data from db.json if localStorage is empty
-fetch("./db.json")
+fetch("db.json")
     .then(response => response.json()) // response.json() converts the downloaded file into real JavaScript data.
     .then(data => {
         let users = data.users || [];
