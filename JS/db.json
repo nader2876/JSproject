@@ -1,59 +1,12 @@
 {
   "users": [
-    {
-      "id": 1,
-      "username": "nader11",
-      "email": "nader@gmail.com",
-      "password": "nader1212",
-      "role": "user"
-    },
+
     {
       "id": 2,
       "username": "ahmad11",
       "email": "ahmad@gmail.com",
       "password": "ahmad1212",
-      "role": "admin"
-    },
-    {
-      "id": 3,
-      "username": "sara_dev",
-      "email": "sara@devs.net",
-      "password": "saraPass123",
-      "role": "user"
-    },
-    {
-      "id": 4,
-      "username": "osama_mgr",
-      "email": "osama@management.com",
-      "password": "osamaSecure456",
-      "role": "admin"
-    },
-    {
-      "id": 5,
-      "username": "lina_tutor",
-      "email": "lina@school.edu",
-      "password": "linaTeach456",
-      "role": "user"
-    },
-    {
-      "id": 6,
-      "username": "faris_tester",
-      "email": "faris@test.net",
-      "password": "farisTestPass",
-      "role": "admin"
-    },
-    {
-      "id": 7,
-      "username": "hassan_app",
-      "email": "hassan@app.com",
-      "password": "hassanAppPass",
-      "role": "user"
-    },
-    {
-      "id": 8,
-      "username": "rana_sys",
-      "email": "rana@system.org",
-      "password": "ranaSysPass",
+      "retype_password":"ahmad1212",
       "role": "admin"
     }
   ],
