@@ -4,21 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test HTML</title>
+  
     <body>
-<form action="/submit" method="post">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required>
-    <br>
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
-    <br>
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
+<!-- Users table -->
+<table id="usersTable"></table>
 
-    <br>
-    <button type="submit" class="submit-btn">Submit</button>
+<!-- Forms table -->
+<table id="formsTable"></table>
 
+<!-- Buttons -->
+<button id="btnAddUser">Add User</button>
+<button id="btnAddForm">Add Form</button>
 
+<div id="userModal"></div>
+<div id="formBuilderModal"></div>
+
+  <script src="admin.js"></script>
+    
 
     </body>
 </html>
