@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="../css/Register.css">
+      <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script defer src="../JS/register.js"></script>
+</head>
+<body>
+<div class="container">
+
+    <div class="left">
+
+    <div class="left-shape"></div>
+
+    <div class="corner">
+        <span>Interview-Q</span>
+        
+    </div>
+
+    <div class="content">
+    <h1>Create Account!</h1>
+    <p>Access and Answer Forms Easily. Your <br> Responses Will  Be Saved Securely!</p>
+
+    <img class="img" src="../assest/Register_Img.png">
+    </div>
+    </div>
+     
+    
+  <form class="right" id="registerForm">
+    <h2>Register</h2>
+
+    <label>Username</label>
+    <input type="text" id="username" placeholder="Username" required>
+
+    <label>Email</label>
+    <input type="text" id="email" placeholder="Email" required>
+
+    <label>Password</label>
+    <input type="password" id="password" placeholder="Password" required>
+
+    <label>Retype Password</label>
+    <input type="password" id="retype_password" placeholder="Retype Password" required>
+
+    <div>
+        <label class="checkbox">
+            <input type="checkbox" id="terms">
+            <span class="checkmark"></span>
+            I accept the Terms of Service
+        </label>
+    </div>
+
+    <button type="submit">Sign In</button>
+</form>
+
+
+</div>
+
+</body>
+</html>

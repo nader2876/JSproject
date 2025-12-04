@@ -3,8 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
+  <title>Login</title>git
   <link rel="stylesheet" href="../css/Login.css">
+      <!-- SweetAlert2 -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script defer src="../JS/login.js"></script>
 </head>
 <body>
 
@@ -28,22 +34,22 @@
     </div>
   </div>
 
-  <div class="right">
+  <form class="right" id="loginForm">
     <h2>Log In</h2>
 
-    <label>Email</label>
-    <input type="text">
+    <label>Username</label>
+    <input type="text"id="username" placeholder="username" required>
 
     <label>Password</label>
-    <input type="password">
+    <input type="password"id="password"placeholder="password" required>
     <div>
     <a href="#" class="forget">Forgot Password?</a>
     </div>
 
-    <button>Log In</button>
+    <button type="submit">Log In</button>
 
     
-  </div>
+  </form>
 
 </div>
 
