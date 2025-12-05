@@ -1,0 +1,180 @@
+body {
+    background: #f5f5f5;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 70px;
+    background: #ffffff;
+    border-right: 2px solid #ddd;
+    padding-top: 30px;
+    min-height: 100vh;
+}
+
+.sidebar button {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 30px;
+
+}
+
+
+ .sidebar-links {
+     margin-bottom: 20px;
+ }
+
+
+ 
+ #forms_table {
+     color: black;
+     font-size: 27px;
+
+ }
+
+/* Main Container */
+.main-box {
+    background: #ececec;
+    padding: 35px;
+    border-radius: 16px;
+}
+
+ .page-title {
+            color: #7A2E2E;
+            /* Dark reddish brown */
+            font-weight: 500;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            padding-left: 10px;
+        }
+
+        .main-card {
+            background-color: #ffffff;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            min-height: 600px;
+            /* Give it some height as per image aspect */
+        }
+
+        .test-header {
+            font-weight: 500;
+            font-size: 1.2rem;
+            color: #000;
+            margin-bottom: 30px;
+        }
+
+        .score-row {
+            background-color: #ffffff;
+            border: 1px solid #f0f0f0;
+            border-radius: 16px;
+            /* Pill shape */
+            padding: 10px 30px;
+            /* Horizontal padding */
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s;
+        }
+
+        .score-row:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            min-width: 200px;
+        }
+
+        .user-icon {
+            font-size: 20px;
+            color: #000;
+        }
+
+        .user-name {
+            font-weight: 500;
+            color: #7A2E2E;
+            /* Matching the title color roughly */
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        .status-section {
+            font-weight: 500;
+            font-size: 1.1rem;
+            text-align: center;
+            min-width: 150px;
+        }
+
+        .text-success-custom {
+            color: #2E7D32;
+            /* Deep green */
+        }
+
+        .text-danger-custom {
+            color: #C62828;
+            /* Deep red */
+        }
+
+        .btn-review {
+            background-color: #6D3B3B;
+            /* Dark brown from image */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 30px;
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: opacity 0.2s;
+        }
+
+        .btn-review:hover {
+            background-color: #5a3030;
+            color: white;
+        }
+
+
+
+
+         /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .score-row {
+                flex-direction: column;
+                align-items: center;
+                /* Center align for better mobile look */
+                text-align: center;
+                gap: 15px;
+                padding: 20px;
+                border-radius: 20px;
+                /* Less rounded on mobile for content space */
+            }
+
+            .user-section {
+                flex-direction: column;
+                /* Stack icon and name if needed, or keep row */
+                justify-content: center;
+                min-width: unset;
+                width: 100%;
+            }
+
+            .status-section {
+                min-width: unset;
+                margin: 5px 0;
+            }
+
+            .main-card {
+                padding: 15px;
+                /* Reduce padding on mobile */
+            }
+
+            .btn-review {
+                width: 100%;
+                /* Full width button on mobile */
+            }
+        }

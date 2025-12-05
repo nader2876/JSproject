@@ -104,14 +104,22 @@ body {
     min-width: 80px;
 }
 
-.btn-custom:hover {
-    color: white;
+ .btn-edit:hover {
+    color: rgb(255, 255, 255);
+    background-color: #0c6d38;
+    opacity: 0.9;
+}
+
+
+.btn-delete:hover {
+    color: rgb(255, 255, 255);
+    background-color: #bb3333;
     opacity: 0.9;
 }
 
 /* Custom colors to match image */
 .btn-edit {
-    background-color: #4FD1C5;
+    background-color: #33aa69;
     /* Teal/Seafoam green */
 }
 
@@ -125,3 +133,46 @@ body {
     row-gap: 0;
     /* Cards have their own margin-bottom */
 }
+
+
+
+/* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 60px;
+                /* Slightly smaller sidebar on mobile */
+                padding-top: 20px;
+            }
+
+            .flex-grow-1.p-4 {
+                padding: 1rem !important;
+                /* Reduce padding on main content */
+            }
+
+            .main-box {
+                padding: 20px 15px;
+                /* Reduce padding inside the white box */
+            }
+
+            .user-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .user-info {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+
+            .action-buttons {
+                width: 100%;
+                justify-content: space-between;
+                /* Buttons span full width */
+            }
+
+            .btn-custom {
+                flex-grow: 1;
+                /* Buttons take up available space */
+            }
+        }
