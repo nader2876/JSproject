@@ -10,6 +10,11 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
     <link rel="stylesheet" href="form_builder_create.css">
 </head>
@@ -18,12 +23,14 @@
 
     <div class="d-flex">
 
+        <!-- ================= Sidebar ================= -->
         <div class="sidebar d-flex flex-column align-items-center">
             <a href="#" class="sidebar-links"><i class="bi bi-table" id="forms_table"></i></a>
             <a href="#" class="sidebar-links"><i class="bi bi-person" id="forms_table"></i></a>
 
         </div>
 
+        <!-- ================= Main Content ================= -->
         <div class="flex-grow-1 p-4">
 
             <div class="main-box">
@@ -32,15 +39,18 @@
 
                 <div class="row mt-3">
 
+                    <!-- ================= Left Column ================= -->
                     <div class="col-lg-5 col-md-12 mb-3">
 
                         <form id="form-info">
 
+                            <!-- Title -->
                             <div class="mb-3">
                                 <label for="formTitle" class="form-label">Title</label>
                                 <input type="text" class="form-control" id="formTitle" placeholder="Enter form title">
                             </div>
 
+                            <!-- Description -->
                             <div class="mb-3">
                                 <label for="formDescription" class="form-label">Description</label>
                                 <textarea class="form-control" id="formDescription" rows="4"
@@ -55,12 +65,20 @@
                                     <option value="inactive">Inactive</option>
                                    </select>
                                
+                            <!-- Form Status -->
+                            <div class="mb-3">
+                                <label for="formStatus" class="form-label">Form Status</label>
+                                <select class="form-select" id="formStatus">
+                                    <option>Active (visible to users)</option>
+                                    <option>Inactive</option>
+                                </select>
                             </div>
 
                         </form>
 
                     </div>
 
+                    <!-- ================= Right Column ================= -->
                     <div class="col-lg-7 col-md-12">
 
                         <form id="question-builder">
@@ -130,6 +148,10 @@
 
                                 <input type="text" class="form-control mb-2" placeholder="Answer" id="previewAnswer" style="display: none;">
 
+                                <!-- Short text input -->
+                                <input type="text" class="form-control mb-2" placeholder="Answer" id="previewAnswer">
+
+                                <!-- Dynamic options here -->
                                 <div id="optionsContainer"></div>
 
                                 <button type="button" class="btn btn-outline-secondary mt-2" id="addOptionBtn">Add
