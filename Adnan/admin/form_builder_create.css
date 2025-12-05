@@ -1,0 +1,370 @@
+ body {
+     background: #f5f5f5;
+ }
+
+ /* Sidebar */
+ .sidebar {
+     width: 70px;
+     background: #ffffff;
+     border-right: 2px solid #ddd;
+     padding-top: 30px;
+     min-height: 100vh;
+ }
+
+ .sidebar button {
+     background: none;
+     border: none;
+     font-size: 28px;
+     color: #333;
+     margin-bottom: 30px;
+
+ }
+
+
+
+ /* Form Cards */
+ .form-card {
+     background: #fff;
+     border-radius: 14px;
+     padding: 25px;
+     margin-bottom: 22px;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+ }
+
+ .form-left h5 {
+     margin: 0;
+     font-weight: 600;
+ }
+
+ .form-left small {
+     font-size: 15px;
+     color: #444;
+     display: inline-block;
+     margin-bottom: 8px;
+ }
+
+ .btn-edit {
+     background: #3cae5c;
+     color: white;
+ }
+
+ .btn-scores {
+     background: #6c6c6c;
+     color: white;
+ }
+
+ .btn-delete {
+     background: #e64545;
+     color: white;
+ }
+
+ .create-btn {
+     background: #8b4a44;
+     color: white;
+     border: none;
+     border-radius: 40px;
+     padding: 12px 32px;
+     font-size: 18px;
+     margin-top: 20px;
+ }
+
+ .status-active {
+     color: #1ea73e;
+     font-weight: 600;
+ }
+
+ .status-inactive {
+     color: #c52929;
+     font-weight: 600;
+ }
+
+
+
+ .sidebar-links {
+     margin-bottom: 20px;
+ }
+
+ #forms_table {
+     color: black;
+     font-size: 27px;
+
+ }
+
+
+
+ .all-buttons {
+     display: flex;
+     flex-direction: row;
+     align-content: space-around;
+ }
+
+ .all-buttons button {
+     padding: 12px 67px;
+     font-size: 21px;
+     white-space: nowrap;
+
+ }
+
+
+ .all-buttons button:hover {
+     background-color: #8a8a8a48;
+
+ }
+
+ .all-buttons select {
+     padding: 12px 28px;
+     font-size: 21px;
+     white-space: nowrap;
+
+ }
+
+ .text-end {
+     font-size: 22px;
+ }
+
+
+
+ /* Main Box */
+ .main-box {
+     background: #ececec;
+     padding: 35px;
+     border-radius: 16px;
+ }
+
+ /* Headings */
+ h5,
+ h6 {
+     color: #792C29;
+ }
+
+ /* Form Inputs */
+ .form-control,
+ .form-select {
+     border-radius: 8px;
+     padding: 10px 12px;
+     font-size: 16px;
+ }
+
+ /* Cards */
+ .card {
+     background: #fff;
+     border-radius: 12px;
+     padding: 15px;
+     margin-bottom: 20px;
+ }
+
+ /* Buttons */
+ .btn-brown {
+     background-color: #8b4a44;
+     color: white;
+     border: none;
+     border-radius: 8px;
+     padding: 6px 16px;
+ }
+
+ .btn-brown:hover {
+     background-color: #732f2a;
+ }
+
+ #addOptionBtn {
+     background: #6c6c6c;
+     color: white;
+ }
+
+ #addOptionBtn:hover {
+     background: #555;
+ }
+
+ #addQuestionToFormBtn,
+ #saveFormBtn {
+     background: #3cae5c;
+     color: white;
+     border: none;
+ }
+
+ #addQuestionToFormBtn:hover,
+ #saveFormBtn:hover {
+     background: #2b8a46;
+ }
+
+ /* Options Container */
+ .option-row {
+     display: flex;
+     align-items: center;
+     margin-bottom: 8px;
+ }
+
+ .option-row input[type="text"] {
+     flex: 1;
+     margin-right: 8px;
+ }
+
+ .option-row button {
+     background: #e64545;
+     color: white;
+     border: none;
+     border-radius: 6px;
+     padding: 4px 10px;
+ }
+
+ /* Switch */
+ .form-check-input:checked {
+     background-color: #3cae5c;
+ }
+
+
+
+
+
+.option-row input.form-control {
+    display: inline-block;
+    width: calc(100% - 70px); /* leave space for control + delete */
+}
+
+.option-row .btn-danger {
+    padding: 4px 8px;
+    height: 36px;
+}
+
+
+
+
+ @media (max-width: 992px) {
+
+     .all-buttons button,
+     .all-buttons select {
+         padding: 10px 40px;
+         font-size: 18px;
+     }
+
+     .form-card h2 {
+         font-size: 22px;
+     }
+
+     .text-end {
+         font-size: 19px;
+     }
+ }
+
+
+ @media (max-width: 768px) {
+
+     .sidebar {
+         width: 55px;
+     }
+
+     .main-box {
+         padding: 25px;
+     }
+
+     .form-card {
+         flex-direction: column;
+         align-items: flex-start;
+         gap: 18px;
+         padding: 20px;
+     }
+
+     .all-buttons {
+         flex-wrap: wrap;
+         gap: 10px;
+     }
+
+     .all-buttons button,
+     .all-buttons select {
+         padding: 10px 25px;
+         font-size: 17px;
+     }
+
+     .form-card h2 {
+         font-size: 20px;
+     }
+
+     .text-end {
+         font-size: 17px;
+         text-align: left !important;
+     }
+
+     .row>.col-lg-5,
+     .row>.col-lg-7 {
+         flex: 0 0 100%;
+         max-width: 100%;
+     }
+ }
+
+
+ @media (max-width: 576px) {
+
+     /* Sidebar becomes top bar */
+     .sidebar {
+         width: 100%;
+         min-height: auto;
+         border-right: none;
+         border-bottom: 2px solid #ddd;
+         flex-direction: row;
+         justify-content: center;
+         padding: 10px 0;
+     }
+
+     .d-flex {
+         flex-direction: column !important;
+     }
+
+     .main-box {
+         margin-top: 15px;
+         padding: 16px;
+     }
+
+     .form-card {
+         padding: 14px;
+     }
+
+     .form-card h2 {
+         font-size: 18px;
+     }
+
+     .all-buttons {
+         flex-wrap: wrap;
+         width: 100%;
+         gap: 10px;
+     }
+
+     .all-buttons button,
+     .all-buttons select {
+         width: 48%;
+         padding: 9px 5px;
+         font-size: 15px;
+     }
+
+     .text-end {
+         width: 100%;
+         font-size: 16px;
+         margin-top: 5px;
+         text-align: left !important;
+     }
+
+     .create-btn {
+         padding: 10px 20px;
+         font-size: 16px;
+     }
+ }
+
+
+ @media (max-width: 400px) {
+
+     .all-buttons button,
+     .all-buttons select {
+         width: 100%;
+         font-size: 14px;
+         padding: 8px;
+     }
+
+     .form-card h2 {
+         font-size: 17px;
+     }
+
+     .text-end {
+         font-size: 15px;
+     }
+ }
