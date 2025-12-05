@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forms Builder</title>
 
-    <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
     <link rel="stylesheet" href="form_builder_create.css">
@@ -19,14 +17,12 @@
 
     <div class="d-flex">
 
-        <!-- ================= Sidebar ================= -->
         <div class="sidebar d-flex flex-column align-items-center">
             <a href="#" class="sidebar-links"><i class="bi bi-table" id="forms_table"></i></a>
             <a href="#" class="sidebar-links"><i class="bi bi-person" id="forms_table"></i></a>
 
         </div>
 
-        <!-- ================= Main Content ================= -->
         <div class="flex-grow-1 p-4">
 
             <div class="main-box">
@@ -35,25 +31,21 @@
 
                 <div class="row mt-3">
 
-                    <!-- ================= Left Column ================= -->
                     <div class="col-lg-5 col-md-12 mb-3">
 
                         <form id="form-info">
 
-                            <!-- Title -->
                             <div class="mb-3">
                                 <label for="formTitle" class="form-label">Title</label>
                                 <input type="text" class="form-control" id="formTitle" placeholder="Enter form title">
                             </div>
 
-                            <!-- Description -->
                             <div class="mb-3">
                                 <label for="formDescription" class="form-label">Description</label>
                                 <textarea class="form-control" id="formDescription" rows="4"
                                     placeholder="Enter description"></textarea>
                             </div>
 
-                            <!-- Form Status -->
                             <div class="mb-3">
                                 <label for="formStatus" class="form-label">Form Status</label>
                                 <select class="form-select" id="formStatus">
@@ -66,21 +58,17 @@
 
                     </div>
 
-                    <!-- ================= Right Column ================= -->
                     <div class="col-lg-7 col-md-12">
 
                         <form id="question-builder">
 
-                            <!-- Add Question Title -->
                             <h6 style="font-weight:500;">Add Question</h6>
 
-                            <!-- Question Text -->
                             <div class="mb-3">
                                 <label for="questionText" class="form-label">Question Text</label>
                                 <input type="text" class="form-control" id="questionText" placeholder="Enter question">
                             </div>
 
-                            <!-- Row: Type / Required / Font -->
                             <div class="row mb-3 g-3">
 
                                 <div class="col-md-4">
@@ -110,7 +98,6 @@
 
                             </div>
 
-                            <!-- Text Formatting -->
                             <div class="mb-3">
                                 <label class="form-label">Text Formatting</label>
                                 <div class="form-check form-check-inline ms-2">
@@ -123,7 +110,12 @@
                                 </div>
                             </div>
 
-                            <!-- Question Preview Card -->
+                            <div class="mb-3" id="correctAnswerWrapper" style="display: none;">
+                                <label for="correctAnswerInput" class="form-label text-success fw-bold">Correct Answer</label>
+                                <input type="text" class="form-control border-success" id="correctAnswerInput"
+                                    placeholder="Enter the correct answer for Short Text">
+                            </div>
+
                             <div class="card p-3 mb-3" id="questionPreview"
                                 style="background:#fff; border-radius:12px;">
 
@@ -133,17 +125,14 @@
                                         Question</button>
                                 </div>
 
-                                <!-- Short text input -->
-                                <input type="text" class="form-control mb-2" placeholder="Answer" id="previewAnswer">
+                                <input type="text" class="form-control mb-2" placeholder="Answer" id="previewAnswer" style="display: none;">
 
-                                <!-- Dynamic options here -->
                                 <div id="optionsContainer"></div>
 
                                 <button type="button" class="btn btn-outline-secondary mt-2" id="addOptionBtn">Add
                                     Option</button>
                             </div>
 
-                            <!-- Add Question to Form -->
                             <div class="card p-3" id="formQuestionsCard" style="background:#fff; border-radius:12px;">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
                                     <h6 class="mb-0">Questions in this form</h6>
@@ -151,8 +140,7 @@
                                 </div>
 
                                 <div id="questionsList">
-                                    <!-- Added questions will appear here -->
-                                </div>
+                                    </div>
                             </div>
 
 
@@ -166,9 +154,7 @@
         </div>
 
     </div>
-
-
-
+    
     <script>
         // ELEMENTS (match your HTML)
         const qText = document.getElementById("questionText");
@@ -180,14 +166,18 @@
         const fontSelect = document.getElementById("fontSelect");
         const addOptionBtn = document.getElementById("addOptionBtn");
         const optionsContainer = document.getElementById("optionsContainer");
-        const previewAnswer = document.getElementById("previewAnswer"); // note: exists in your HTML
+        const previewAnswer = document.getElementById("previewAnswer"); // now unused in preview, hidden in HTML
         const addQuestionBtn = document.getElementById("addQuestionToFormBtn");
         const questionsList = document.getElementById("questionsList");
+        const correctAnswerInput = document.getElementById("correctAnswerInput");
+        const correctAnswerWrapper = document.getElementById("correctAnswerWrapper");
+
 
         // state
         let styleSettings = { bold: false, italic: false, font: "Arial" };
         let optionCount = 0;
         const MAX_OPTIONS = 4;
+        const CORRECT_ANSWER_NAME = "correct_answer_selector"; // Radio button group name
 
         // helper: apply styles to element
         function applyStyles(el) {
@@ -202,27 +192,33 @@
             previewText.textContent = qText.value || "Question will appear here";
             applyStyles(previewText);
 
-            // show/hide preview answer input (only show in preview when Short Text? you requested preview not show input for Short Text)
-            // your last instruction: when select "short text" the text input in preview NO NEED it
-            // So hide previewAnswer for Short Text, show it for others? Actually earlier you wanted preview input only for Short Text originally.
-            // You said: "when i select 'short text' the text input in 'Question will appear here' no need it, but when i add question, the text input must be there."
-            // Following that: hide previewAnswer for Short Text; show for others? That is what user asked.
+            // show/hide Short Text correct answer input
             if (qType.value === "Short Text") {
-                previewAnswer.style.display = "none";
+                correctAnswerWrapper.style.display = "block";
+                addOptionBtn.style.display = "none";
+                optionsContainer.innerHTML = ""; // Clear options
+                optionCount = 0;
             } else {
-                // For Multiple/Dropdown we also hide previewAnswer (they said no need the text input in both questions in this form)
-                previewAnswer.style.display = "none";
+                correctAnswerWrapper.style.display = "none";
             }
 
             // Show Add Option button only for Multiple Choice or Dropdown List
             if (qType.value === "Multiple Choice" || qType.value === "Dropdown List") {
                 addOptionBtn.style.display = "inline-block";
+                
+                // If switching between MC and Dropdown, reset options to change control type
+                const currentControl = optionsContainer.querySelector('input[type="radio"], input[type="checkbox"]');
+                if (currentControl && qType.value === "Multiple Choice" && currentControl.type !== "radio") {
+                    optionsContainer.innerHTML = "";
+                    optionCount = 0;
+                } else if (currentControl && qType.value === "Dropdown List" && currentControl.type !== "checkbox") {
+                    optionsContainer.innerHTML = "";
+                    optionCount = 0;
+                }
+
             } else {
                 addOptionBtn.style.display = "none";
-                // clear options container if switching to Short Text
-                // but keep them if user wants? better clear to avoid confusion
-                optionsContainer.innerHTML = "";
-                optionCount = 0;
+                
             }
         }
 
@@ -233,20 +229,22 @@
 
             const row = document.createElement("div");
             row.className = "d-flex align-items-center gap-2 mt-2 option-row";
+            row.dataset.optionId = optionCount; // unique ID for this option
 
-            // control (radio or checkbox) - clickable and disabled in preview? you asked clickable — keep enabled
+            // Correct Answer Selector (Radio for MC, Checkbox for Dropdown)
             const control = document.createElement("input");
-            if (qType.value === "Multiple Choice") {
-                control.type = "radio";
-                control.name = `preview_choice_${Date.now()}`; // group per question preview
-            } else {
-                control.type = "checkbox";
-            }
-
+            control.className = "correct-answer-control";
+            
+            // Note: Since both MC and Dropdown currently only allow ONE correct answer in this setup, 
+            // we use a radio button for selection consistency when building the question.
+            // The actual field type (radio vs. dropdown) is only for the user's view in the saved card.
+            control.type = "radio";
+            control.name = CORRECT_ANSWER_NAME; // Grouped radio buttons
+            
             // text input for option label (editable in preview)
             const txt = document.createElement("input");
             txt.type = "text";
-            txt.className = "form-control";
+            txt.className = "form-control option-text-input";
             txt.placeholder = `Option ${optionCount}`;
             txt.style.maxWidth = "50%";
 
@@ -260,7 +258,14 @@
                 optionCount--;
             });
 
+            // Label for the radio button (indicates this selects the correct answer)
+            const label = document.createElement("small");
+            label.textContent = "Correct";
+            label.className = "text-success fw-bold me-2";
+
+
             row.appendChild(control);
+            row.appendChild(label);
             row.appendChild(txt);
             row.appendChild(delBtn);
 
@@ -269,8 +274,32 @@
 
         // build saved question card based on current preview state
         function buildSavedQuestion() {
+            const type = qType.value;
+            const optionElements = optionsContainer.querySelectorAll(".option-row");
+            let correctAnswer = "";
+            let optionsData = [];
+
+            if (type === "Short Text") {
+                correctAnswer = correctAnswerInput.value.trim();
+            } else {
+                // Collect options and identify the correct one
+                optionElements.forEach((row, idx) => {
+                    const textInput = row.querySelector('.option-text-input');
+                    const isCorrect = row.querySelector('.correct-answer-control').checked;
+                    
+                    const optionValue = textInput.value.trim() || `Option ${idx + 1}`;
+                    optionsData.push(optionValue);
+                    
+                    if (isCorrect) {
+                        correctAnswer = optionValue;
+                    }
+                });
+            }
+
+            // --- Generate Card for Display in Questions List ---
+
             const card = document.createElement("div");
-            card.className = "card p-3 mb-2";
+            card.className = "card p-3 mb-2 saved-question-card";
             card.style.borderRadius = "10px";
 
             // question title with styling
@@ -282,57 +311,32 @@
             q.style.fontFamily = styleSettings.font;
             card.appendChild(q);
 
-            // required marker
-            if (requiredSwitch.checked) {
-                const req = document.createElement("small");
-                req.textContent = "* Required";
-                req.style.color = "red";
-                card.appendChild(req);
-            }
-
-            // add control area
-            const type = qType.value;
-
-            if (type === "Short Text") {
-                // add text input for user
-                const input = document.createElement("input");
-                input.type = "text";
-                input.className = "form-control mt-2";
-                input.placeholder = "Answer";
-                card.appendChild(input);
-            } else if (type === "Multiple Choice") {
-                // collect option texts from preview inputs
-                const rows = optionsContainer.querySelectorAll(".option-row input[type='text']");
-                rows.forEach((txtInput, idx) => {
-                    const wrapper = document.createElement("div");
-                    wrapper.className = "d-flex align-items-center gap-2 mt-2";
-
-                    const radio = document.createElement("input");
-                    radio.type = "radio";
-                    radio.name = `saved_mc_${Date.now()}`; // group per saved question
-                    radio.disabled = false; // clickable
-
-                    const label = document.createElement("label");
-                    label.textContent = txtInput.value || `Option ${idx + 1}`;
-                    label.style.marginLeft = "8px";
-
-                    wrapper.appendChild(radio);
-                    wrapper.appendChild(label);
-                    card.appendChild(wrapper);
-                });
-            } else if (type === "Dropdown List") {
-                const select = document.createElement("select");
-                select.className = "form-select mt-2";
-
-                const rows = optionsContainer.querySelectorAll(".option-row input[type='text']");
-                rows.forEach((txtInput, idx) => {
-                    const opt = document.createElement("option");
-                    opt.textContent = txtInput.value || `Option ${idx + 1}`;
-                    select.appendChild(opt);
-                });
-
-                card.appendChild(select);
-            }
+            // metadata bar
+            const meta = document.createElement("div");
+            meta.className = "d-flex justify-content-between align-items-center mb-2";
+            
+            // Required/Type
+            const metaLeft = document.createElement("small");
+            metaLeft.innerHTML = `Type: <strong>${type}</strong> ${requiredSwitch.checked ? '<span class="text-danger">* Req</span>' : ''}`;
+            
+            // Correct Answer Display
+            const metaRight = document.createElement("small");
+            metaRight.innerHTML = `Correct: <strong class="text-success">${correctAnswer || "Not Set"}</strong>`;
+            
+            meta.appendChild(metaLeft);
+            meta.appendChild(metaRight);
+            card.appendChild(meta);
+            
+            // --- Stored Data (for actual submission to database) ---
+            
+            // You would normally capture this data and send it to the server.
+            // For now, we attach it to the card's dataset for demonstration:
+            card.dataset.questionText = qText.value;
+            card.dataset.questionType = type;
+            card.dataset.isRequired = requiredSwitch.checked;
+            card.dataset.correctAnswer = correctAnswer;
+            card.dataset.options = JSON.stringify(optionsData);
+            card.dataset.styles = JSON.stringify(styleSettings);
 
             return card;
         }
@@ -361,20 +365,42 @@
 
         // Add question to form (top-right button inside preview card)
         addQuestionBtn.addEventListener("click", () => {
-            // validation: for MC/Dropdown require at least 1 option
-            if ((qType.value === "Multiple Choice" || qType.value === "Dropdown List") && optionsContainer.querySelectorAll(".option-row").length === 0) {
-                alert("Please add at least one option.");
+            // Validation: Question Text Required
+            if (!qText.value.trim()) {
+                alert("Please enter the question text.");
                 return;
             }
+
+            // Validation: Short Text needs an answer
+            if (qType.value === "Short Text" && !correctAnswerInput.value.trim()) {
+                alert("Please enter the correct answer for the Short Text question.");
+                return;
+            }
+            
+            // Validation: MC/Dropdown needs at least 1 option and 1 correct answer selected
+            if (qType.value !== "Short Text") {
+                const rows = optionsContainer.querySelectorAll(".option-row");
+                const isCorrectSelected = optionsContainer.querySelector('.correct-answer-control:checked');
+
+                if (rows.length === 0) {
+                    alert("Please add at least one option.");
+                    return;
+                }
+                if (!isCorrectSelected) {
+                    alert("Please select the correct option.");
+                    return;
+                }
+            }
+
 
             const savedCard = buildSavedQuestion();
             questionsList.appendChild(savedCard);
 
-            // reset builder area (keep formTitle etc.)
+            // reset builder area
             qText.value = "";
+            correctAnswerInput.value = "";
             optionsContainer.innerHTML = "";
             optionCount = 0;
-            // reset formatting? keep styling as last chosen (optional). We'll keep it.
             updatePreview();
         });
 
@@ -383,7 +409,7 @@
 
 
     </script>
-
+<script src="../../JS/admin.js"></script>
 
 
 </body>
