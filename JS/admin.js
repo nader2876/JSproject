@@ -296,4 +296,11 @@ function deleteQuestion(id) {
     showSuccess("Question deleted successfully!");
 }
 
- console.log(database);
+ //create form events
+ document.getElementById("saveFormBtn").addEventListener('click',(e)=>{
+addForm();
+
+ })
+
+
+ 
