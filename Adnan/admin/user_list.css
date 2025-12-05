@@ -1,0 +1,127 @@
+body {
+    background: #f5f5f5;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 70px;
+    background: #ffffff;
+    border-right: 2px solid #ddd;
+    padding-top: 30px;
+    min-height: 100vh;
+}
+
+.sidebar button {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 30px;
+
+}
+
+
+ .sidebar-links {
+     margin-bottom: 20px;
+ }
+
+
+ 
+ #forms_table {
+     color: black;
+     font-size: 27px;
+
+ }
+
+/* Main Container */
+.main-box {
+    background: #ececec;
+    padding: 35px;
+    border-radius: 16px;
+}
+
+.page-header {
+    color: #8A3C3C;
+    /* Dark reddish/brown color from image */
+    font-weight: 500;
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    padding-left: 10px;
+}
+
+.user-card {
+    background-color: #ffffff;
+    border-radius: 20px;
+    /* Highly rounded corners */
+    padding: 15px 25px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    /* Soft drop shadow */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.user-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-icon {
+    font-size: 24px;
+    color: #000;
+    /* Solid black icon */
+}
+
+.user-name {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.btn-custom {
+    border: none;
+    border-radius: 6px;
+    /* Slightly rounded buttons */
+    padding: 6px 24px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: white;
+    transition: opacity 0.2s;
+    min-width: 80px;
+}
+
+.btn-custom:hover {
+    color: white;
+    opacity: 0.9;
+}
+
+/* Custom colors to match image */
+.btn-edit {
+    background-color: #4FD1C5;
+    /* Teal/Seafoam green */
+}
+
+.btn-delete {
+    background-color: #E53E3E;
+    /* Soft Red */
+}
+
+/* Grid styling adjustments */
+.row-gap {
+    row-gap: 0;
+    /* Cards have their own margin-bottom */
+}
