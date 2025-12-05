@@ -1,11 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel</title>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<style>
+  table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+  th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+  button { margin-right: 5px; }
+  .modal { display: none; position: fixed; top: 20%; left: 50%; transform: translateX(-50%); 
+           background: #fff; padding: 20px; border: 1px solid #ccc; z-index: 1000; }
+</style>
 </head>
 <body>
-    <h1>WELCOME AT ADMIN DASHBORED </h1>
+
+<h2>Users</h2>
+<button onclick="openAddUser()">Add User</button>
+<table id="usersTable"></table>
+
+<h2>Forms</h2>
+<button onclick="openAddForm()">Add Form</button>
+<table id="formsTable"></table>
+
+<h2>Questions</h2>
+<button onclick="openAddQuestion()">Add Question</button>
+<table id="questionsTable"></table>
+
+<!-- Modals -->
+<div id="addUserModal" class="modal">
+  <h3>Add User</h3>
+  <input id="addUsername" placeholder="Username"><br>
+  <input id="addEmail" placeholder="Email"><br>
+  <input id="addPassword" placeholder="Password"><br>
+  <input id="addRole" placeholder="Role"><br>
+  <button onclick="addUser(
+    document.getElementById('addUsername').value,
+    document.getElementById('addEmail').value,
+    document.getElementById('addPassword').value,
+    document.getElementById('addRole').value
+  )">Add</button>
+  <button onclick="document.getElementById('addUserModal').style.display='none'">Close</button>
+</div>
+
+<div id="editUserModal" class="modal">
+  <h3>Edit User</h3>
+  <input id="editUsername" placeholder="Username"><br>
+  <input id="editEmail" placeholder="Email"><br>
+  <input id="editPassword" placeholder="Password"><br>
+  <input id="editRole" placeholder="Role"><br>
+  <button onclick="saveEditingUser()">Save</button>
+  <button onclick="document.getElementById('editUserModal').style.display='none'">Close</button>
+</div>
+
+<div id="addFormModal" class="modal">
+  <h3>Add Form</h3>
+  <input id="formTitle" placeholder="Title"><br>
+  <input id="formDescription" placeholder="Description"><br>
+  <input id="formStatus" placeholder="Status"><br>
+  <button onclick="addForm()">Add Form</button>
+  <button onclick="document.getElementById('addFormModal').style.display='none'">Close</button>
+</div>
+
+<div id="editFormModal" class="modal">
+  <h3>Edit Form</h3>
+  <input id="editFormTitle" placeholder="Title"><br>
+  <input id="editFormDescription" placeholder="Description"><br>
+  <input id="editFormStatus" placeholder="Status"><br>
+  <button onclick="saveEditingForm()">Save</button>
+  <button onclick="document.getElementById('editFormModal').style.display='none'">Close</button>
+</div>
+
+<div id="addQuestionModal" class="modal">
+  <h3>Add Question</h3>
+  <input id="questionText" placeholder="Question Text"><br>
+  <input id="questionType" placeholder="Type"><br>
+  <input id="questionOptions" placeholder="Options (comma separated)"><br>
+  <button onclick="
+    const form = database.forms.find(f => f.id === currentEditingFormId);
+    form.questions.push({
+      id: form.questions.length + 1,
+      text: document.getElementById('questionText').value,
+      type: document.getElementById('questionType').value,
+      options: document.getElementById('questionOptions').value.split(',').map(o => o.trim())
+    });
+    form.questionsNumber = form.questions.length;
+    saveDatabase();
+    renderQuestions();
+    document.getElementById('addQuestionModal').style.display='none';
+    showSuccess('Question added successfully');
+  ">Add Question</button>
+  <button onclick="document.getElementById('addQuestionModal').style.display='none'">Close</button>
+</div>
+
+<script src="JS/admin.js"></script>
 </body>
 </html>
+
+
