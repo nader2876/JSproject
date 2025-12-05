@@ -1,0 +1,165 @@
+body {
+    background: #f5f5f5;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 70px;
+    background: #ffffff;
+    border-right: 2px solid #ddd;
+    padding-top: 30px;
+    min-height: 100vh;
+}
+
+.sidebar button {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 30px;
+
+}
+
+
+.sidebar-links {
+    margin-bottom: 20px;
+}
+
+
+
+#forms_table {
+    color: black;
+    font-size: 27px;
+
+}
+
+/* Main Container */
+.main-box {
+    background: #ececec;
+    padding: 35px;
+    border-radius: 16px;
+}
+
+
+
+.page-title {
+    color: #7A2E2E;
+    /* Dark reddish brown */
+    font-weight: 500;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    padding-left: 10px;
+}
+
+.main-card {
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    min-height: 600px;
+}
+
+.test-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.test-title {
+    color: #000;
+}
+
+.test-score {
+    color: #2E7D32;
+    /* Deep green */
+    font-weight: 600;
+}
+
+.question-block {
+    background-color: #F8F9FA;
+    /* Very light grey background for questions */
+    border-radius: 12px;
+    /* Slightly rounded */
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+.question-label {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #000;
+    margin-bottom: 15px;
+}
+
+.answer-box {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 12px 20px;
+    color: #2E7D32;
+    /* Green text for correct answer */
+    font-weight: 500;
+    display: inline-block;
+    min-width: 150px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+}
+
+/* Custom Radio Buttons */
+.custom-radio {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    cursor: pointer;
+}
+
+.radio-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #E0E0E0;
+    /* Grey inactive */
+    margin-right: 15px;
+    position: relative;
+    transition: background-color 0.2s;
+}
+
+.custom-radio.active .radio-circle {
+    background-color: #7A2E2E;
+    /* Active matches theme color */
+}
+
+.radio-label {
+    font-size: 1rem;
+    color: #333;
+}
+
+.custom-radio.active .radio-label {
+    color: #7A2E2E;
+    font-weight: 500;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .main-card {
+        padding: 20px;
+    }
+
+    .test-header-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 30px;
+    }
+
+    .page-title {
+        font-size: 1.5rem;
+    }
+
+    .answer-box {
+        width: 100%;
+        /* Full width answer on mobile */
+        display: block;
+    }
+}
