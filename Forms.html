@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Active forms</title>
+</head>
+
+<body>
+
+    <h1 id="IQ Test">IQ Test</h1>
+
+    <button id="beginBtn">Begin</button>
+
+    <script>
+        // قراءة ID الامتحان من الـ URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const formId = urlParams.get("id");
+
+        // تغيير الاسم حسب الـ ID
+        fetch("./db.json")
+            .then(res => res.json())
+            .then(data => {
+                let formObj = data.forms.find(t => t.id == formId);
+                if (formObj) {
+                    document.getElementById("formName").textContent = formObj.title;
+                }
+            });
+
+        // عند الضغط على الزر → الانتقال إلى صفحة الأسئلة
+        document.getElementById("beginBtn").addEventListener("click", () => {
+            window.location.href = `user-formsQs.html?id=${formId}`;
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+{
+  "users": [
+
+    {
+      "id": 2,
+      "username": "ahmad11",
+      "email": "ahmad@gmail.com",
+      "password": "ahmad1212",
+      "retype_password":"ahmad1212",
+      "role": "admin"
+    }
+  ],
+  
+  "forms": [
+    {
+       "id": 1,
+      "title": "IQ Test",
+      "questions": [
+        {
+          "id": 1,
+          "question": "What is 5 + 3?",
+          "type": "mcq",
+          "choices": ["6", "7", "8", "9"],
+          "correctAnswer": "8",
+          "userAnswer": ""
+        },
+        {
+          "id": 2,
+          "question": "Which shape has 4 equal sides?",
+          "type": "mcq",
+          "choices": ["Triangle", "Square", "Circle"],
+          "correctAnswer": "Square",
+          "userAnswer": ""
+        }
+      ],
+      "score": 0
+    },
+    {
+      "id": 2,
+      "title": "English Test",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Choose the correct spelling:",
+          "type": "mcq",
+          "choices": ["Recieve", "Receive", "Receeve"],
+          "correctAnswer": "Receive",
+          "userAnswer": ""
+        },
+        {
+          "id": 2,
+          "question": "The opposite of 'hot' is:",
+          "type": "mcq",
+          "choices": ["Warm", "Cold", "Cool"],
+          "correctAnswer": "Cold",
+          "userAnswer": ""
+        }
+      ],
+      "score": 0
+    }
+    
+  
+  ]
+}
