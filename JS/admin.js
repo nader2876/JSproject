@@ -1,3 +1,5 @@
+
+
 // SweetAlert Helpers ------------------------------------------------
 function showError(message) {
     Swal.fire({
@@ -122,19 +124,53 @@ function renderForms() {
 
     database.forms.forEach(form => {
         table.innerHTML += `
-        <tr>
-            <td>${form.title}</td>
-            <td>${form.description}</td>
-            <td>${form.status}</td>
-            <td>${form.createdAt}</td>
-            <td>${form.questionsNumber}</td>
+         <div class="form-card">
+            <div class="form-left">
+                <h2>#1 &nbsp; ${form.title}</h2><br>
+                <div class="all-buttons">
+                    <button class="btn btn-edit btn-sm me-2 ">Edit</button>
+                    <button class="btn btn-scores btn-sm me-2">Scores</button>
+                    <button class="btn btn-delete btn-sm me-2" onclick="deleteForm(${form.id});">Delete</button>
 
-            <td><button onclick="openEditForm(${form.id})">Edit</button></td>
-            <td><button onclick="toggleFormStatus(${form.id})">Toggle</button></td>
-            <td><button onclick="deleteForm(${form.id})">Delete</button></td>
-        </tr>`;
+                    <select class="form-select d-inline-block w-auto btn-sm" onchange="changeFormStatus(${form.id}, this.value)">
+                        <option value="active" ${form.status === 'active' ? 'selected' : ''}>Active</option>
+                        <option value="inactive" ${form.status === 'inactive' ? 'selected' : ''}>Inactive</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="text-end">
+                <div>${form.questions.length} Questions</div>
+                <div class="mt-1 status" id="status-${form.id}">
+                    <i class="bi bi-check-circle-fill"></i> ${form.status}
+                </div>
+            </div>
+        </div>`;
+
+        
+        const statusElement = document.getElementById(`status-${form.id}`);
+        if (form.status === "active") {
+            statusElement.classList.add('status-active');
+            statusElement.classList.remove('status-inactive');
+        } else {
+            statusElement.classList.add('status-inactive');
+            statusElement.classList.remove('status-active');
+        }
     });
 }
+
+renderForms();
+function changeFormStatus(formId, newStatus) {
+    const form = database.forms.find(f => f.id === formId);
+    if (!form) return;
+
+    form.status = newStatus;
+    saveDatabase();
+    renderForms(); // re-render to update the card style
+
+    showSuccess(`Form status changed to ${newStatus}`);
+}
+
 
 function openAddForm() {
     document.getElementById('addFormModal').style.display = 'block';
@@ -203,10 +239,25 @@ function toggleFormStatus(id) {
 }
 
 function deleteForm(id) {
-    database.forms = database.forms.filter(f => f.id !== id);
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "Do you want to permanently delete this form?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'Cancel'
+    }).then((result) => {
+        if (result.isConfirmed) {
+           database.forms = database.forms.filter(f => f.id !== id);
     saveDatabase();
     renderForms();
     showSuccess("Form deleted successfully!");
+        }
+    });
+
+   
 }
 
 // QUESTIONS SECTION ---------------------------------------------------
@@ -244,4 +295,5 @@ function deleteQuestion(id) {
 
     showSuccess("Question deleted successfully!");
 }
- 
+
+ console.log(database);

@@ -11,8 +11,12 @@
 
     <!-- Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <!--sweet alerts -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
     <link rel="stylesheet" href="forms_table_preview.css">
+ 
 </head>
 
 <body>
@@ -32,93 +36,9 @@
             <div class="main-box">
 
                 <!-- Title -->
-                <h3 class="mb-4" style="font-weight:600; color:#792C29">Forms Table</h3>
+                <h3 class="mb-4" style="font-weight:600; color:#792C29" id="formsTable">Forms Table</h3>
 
-                <!-- ========= CARD #1 ========= -->
-                <div class="form-card">
-                    <div class="form-left">
-                        <h2>#1 &nbsp; Orange Coding Academy - JS Test</h2><br>
-
-                        <div class="all-buttons">
-
-                            <button class="btn btn-edit btn-sm me-2">Edit</button>
-                            <button class="btn btn-scores btn-sm me-2">Scores</button>
-                            <button class="btn btn-delete btn-sm me-2">Delete</button>
-
-                            <select class="form-select d-inline-block w-auto btn-sm">
-                                <option>Status</option>
-                                <option>Active</option>
-                                <option>Inactive</option>
-                            </select>
-
-                        </div>
-
-                    </div>
-
-                    <div class="text-end">
-                        <div >23 Questions</div>
-                        <div class="mt-1 status-active"><i class="bi bi-check-circle-fill"></i> Active</div>
-                    </div>
-                </div>
-
-                <!-- ========= CARD #2 ========= -->
-                <div class="form-card">
-                    <div class="form-left">
-                        <h2>#2 &nbsp; Microsoft - Automation Test</h2><br>
-
-
-                        <div class="all-buttons">
-
-                            <button class="btn btn-edit btn-sm me-2">Edit</button>
-                            <button class="btn btn-scores btn-sm me-2">Scores</button>
-                            <button class="btn btn-delete btn-sm me-2">Delete</button>
-
-                            <select class="form-select d-inline-block w-auto btn-sm">
-                                <option>Status</option>
-                                <option>Active</option>
-                                <option>Inactive</option>
-                            </select>
-
-                        </div>
-
-
-
-                    </div>
-
-                    <div class="text-end">
-                        <div >30 Questions</div>
-                        <div class="mt-1 status-active"><i class="bi bi-check-circle-fill"></i> Active</div>
-                    </div>
-                </div>
-
-                <!-- ========= CARD #3 ========= -->
-                <div class="form-card">
-                    <div class="form-left">
-                        <h2>#3 &nbsp; Q2 Impact - Coaching</h2><br>
-
-                        <div class="all-buttons">
-
-                            <button class="btn btn-edit btn-sm me-2">Edit</button>
-                            <button class="btn btn-scores btn-sm me-2">Scores</button>
-                            <button class="btn btn-delete btn-sm me-2">Delete</button>
-
-                            <select class="form-select d-inline-block w-auto btn-sm">
-                                <option>Status</option>
-                                <option>Active</option>
-                                <option>Inactive</option>
-                            </select>
-
-                        </div>
-
-
-
-                    </div>
-
-                    <div class="text-end">
-                        <div>35 Questions</div>
-                        <div class="mt-1 status-inactive"><i class="bi bi-x-circle-fill"></i> InActive</div>
-                    </div>
-                </div>
+            
 
                 <!-- Create Button -->
                 <div class="text-center">
@@ -129,7 +49,7 @@
         </div>
 
     </div>
-
+   <script src="../../JS/admin.js"></script>
 </body>
 
 </html>
