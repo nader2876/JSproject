@@ -1,6 +1,5 @@
 {
   "users": [
-
     {
       "id": 2,
       "username": "ahmad11",
@@ -10,10 +9,9 @@
       "role": "admin"
     }
   ],
-  
   "forms": [
     {
-       "id": 1,
+      "id": 1,
       "title": "IQ Test",
       "questions": [
         {
@@ -30,6 +28,13 @@
           "type": "mcq",
           "choices": ["Triangle", "Square", "Circle"],
           "correctAnswer": "Square",
+          "userAnswer": ""
+        },
+        {
+          "id": 3,
+          "question": "Type the result of 2 + 5",
+          "type": "text",
+          "correctAnswer": "7",
           "userAnswer": ""
         }
       ],
@@ -54,11 +59,17 @@
           "choices": ["Warm", "Cold", "Cool"],
           "correctAnswer": "Cold",
           "userAnswer": ""
+        },
+        {
+          "id": 3,
+          "question": "Write the plural of 'mouse'",
+          "type": "text",
+          "correctAnswer": "mice",
+          "userAnswer": ""
         }
       ],
       "score": 0
     }
-    
-  
-  ]
+  ],
+  "scores": []
 }

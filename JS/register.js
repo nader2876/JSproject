@@ -88,8 +88,14 @@ document.getElementById("registerForm").addEventListener("submit", function(e) {
         icon: 'success',
         title: 'Success!',
         text: 'Account created successfully!'
-    });
 
-    document.getElementById("registerForm").reset();
+    }).then(() => {
+    // Redirect after clicking OK
+    window.location.href = "Login.html";
+});
+
+  
+    
+  
 });
 

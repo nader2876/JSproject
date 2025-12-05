@@ -1,37 +1,72 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>Active forms</title>
+  <meta charset="utf-8" />
+  <title>Available Forms</title>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    body{font-family: Arial, Helvetica, sans-serif;padding:20px}
+    .card{border:1px solid #ddd;padding:12px;border-radius:8px;margin-bottom:12px}
+    .title{font-weight:700}
+    .begin{margin-top:8px;padding:8px 12px;background:#2a7ae2;color:white;border:none;border-radius:6px;cursor:pointer}
+  </style>
 </head>
-
 <body>
 
-    <h1 id="IQ Test">IQ Test</h1>
+  <h1>Active Forms</h1>
+  <div id="IQ Test"></div>
 
-    <button id="beginBtn">Begin</button>
+  <script>
+  // fetch forms and render them with Begin button
+  fetch("./db.json")
+    .then(res => {
+      if (!res.ok) throw new Error("db.json not found on server");
+      return res.json();
+    })
+    .then(data => {
+      // store editable copy to localStorage only if it's not there already
+      if (!localStorage.getItem("formsData")) {
+        localStorage.setItem("formsData", JSON.stringify(data.forms));
+      }
 
-    <script>
-        // قراءة ID الامتحان من الـ URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const formId = urlParams.get("id");
+      const list = document.getElementById("IQ Test");
+      data.forms.forEach(form => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <div class="title">${form.title}</div>
+          <div style="margin-top:6px;color:#555">${(form.questions || []).length} questions</div>
+          <button class="begin" data-title="${escapeHtml(form.title)}">Begin</button>
+        `;
+        list.appendChild(card);
+      });
 
-        // تغيير الاسم حسب الـ ID
-        fetch("./db.json")
-            .then(res => res.json())
-            .then(data => {
-                let formObj = data.forms.find(t => t.id == formId);
-                if (formObj) {
-                    document.getElementById("formName").textContent = formObj.title;
-                }
-            });
+      // delegate click to list for Begin buttons
+      list.addEventListener("click", (ev) => {
+        const btn = ev.target.closest("button.begin");
+        if (!btn) return;
+        const title = btn.getAttribute("data-title");
+        // save selected test title to localStorage (no URL)
+        localStorage.setItem("selectedTestTitle", title);
+        // then navigate to questions page
+        window.location.href = "user-formsQs.html";
+      });
 
-        // عند الضغط على الزر → الانتقال إلى صفحة الأسئلة
-        document.getElementById("beginBtn").addEventListener("click", () => {
-            window.location.href = `user-formsQs.html?id=${formId}`;
-        });
-    </script>
+    })
+    .catch(err => {
+      console.error(err);
+      Swal.fire({ icon: "error", title: "Error", text: "Could not load tests. Make sure db.json is served." });
+    });
+
+  // small helper to avoid injecting raw HTML in dataset (keeps title intact)
+  function escapeHtml(str){
+    return str;
+  }
+  </script>
 
 </body>
-
 </html>
+
+
+
+

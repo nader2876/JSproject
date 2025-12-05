@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>Form-Questions</title>
+  <meta charset="utf-8" />
+  <title>Test Questions</title>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    body{font-family: Arial, Helvetica, sans-serif;padding:20px}
+    .qbox{border:1px solid #ddd;padding:12px;border-radius:8px;margin-bottom:10px}
+    .choices label{display:block;margin:6px 0}
+    #submitBtn{padding:10px 16px;background:#28a745;color:white;border:none;border-radius:6px;cursor:pointer}
+  </style>
 </head>
-
 <body>
 
-    <h2 id="testTitle"></h2>
+  <h1 id="testTitle">IQ Test</h1>
+  <div id="questionsContainer"></div>
+  <div style="margin-top:12px">
+    <button id="submitBtn">Submit Answers</button>
+  </div>
 
-    <div id="questionsContainer"></div>
-
-    <button id="submitBtn" style="display:none;">Submit</button>
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="user-formsQs.js"></script>
-
+  <script src="../JS/user-formQs.js"></script>
 </body>
-
 </html>
+
