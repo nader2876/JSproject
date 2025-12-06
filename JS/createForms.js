@@ -5,6 +5,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Only run if we're on the form builder create page
     if (!document.getElementById('questionText')) return;
     
+    // NOTE: 'previewAnswer' element is used inside updatePreview, 
+    // it must be defined globally or passed, so we retrieve it here:
+    window.previewAnswer = document.getElementById("previewAnswer");
+
     initializeFormBuilder();
 });
 
@@ -24,6 +28,9 @@ function initializeFormBuilder() {
     const correctAnswerInput = document.getElementById("correctAnswerInput");
     const correctAnswerWrapper = document.getElementById("correctAnswerWrapper");
     const saveFormBtn = document.getElementById("saveFormBtn");
+    
+    // Retrieve the preview answer input defined outside the function scope
+    const previewAnswer = window.previewAnswer; 
 
     // State
     let styleSettings = { bold: false, italic: false, font: "Arial" };
@@ -42,32 +49,57 @@ function initializeFormBuilder() {
     // Update preview layout & controls
     function updatePreview() {
         previewText.textContent = qText.value || "Question will appear here";
+        
+        // **FIX 1: Apply Required visual indicator based on switch state**
+        if (requiredSwitch.checked) {
+            previewText.textContent += " *"; 
+        }
+        
         applyStyles(previewText);
 
+        // Short Text preview logic
         if (qType.value === "Short Text") {
             correctAnswerWrapper.style.display = "block";
             addOptionBtn.style.display = "none";
             optionsContainer.innerHTML = "";
             optionCount = 0;
+
+            if (previewAnswer) {
+                previewAnswer.style.display = "block";
+                
+                // **FIX 2: Apply 'required' attribute to the preview input for Short Text**
+                previewAnswer.required = requiredSwitch.checked;
+                
+                previewAnswer.placeholder = requiredSwitch.checked ? "Answer (Required)" : "Answer";
+            }
         } else {
             correctAnswerWrapper.style.display = "none";
+            if (previewAnswer) previewAnswer.style.display = "none";
         }
 
+        // Multiple Choice / Dropdown logic
         if (qType.value === "Multiple Choice" || qType.value === "Dropdown List") {
-            addOptionBtn.style.display = "inline-block";
-            
-            const currentControl = optionsContainer.querySelector('input[type="radio"], input[type="checkbox"]');
-            if (currentControl && qType.value === "Multiple Choice" && currentControl.type !== "radio") {
-                optionsContainer.innerHTML = "";
-                optionCount = 0;
-            } else if (currentControl && qType.value === "Dropdown List" && currentControl.type !== "checkbox") {
-                optionsContainer.innerHTML = "";
-                optionCount = 0;
-            }
+            addOptionBtn.style.display = optionCount < MAX_OPTIONS ? "inline-block" : "none";
+
+            // Update option input types
+            const optionType = qType.value === "Multiple Choice" ? "radio" : "checkbox";
+            const optionRows = optionsContainer.querySelectorAll(".option-row");
+            optionRows.forEach(row => {
+                const control = row.querySelector(".correct-answer-control");
+                control.type = optionType;
+                // Only radio buttons need a shared name for mutual exclusion
+                control.name = optionType === "radio" ? CORRECT_ANSWER_NAME : `${CORRECT_ANSWER_NAME}_${row.dataset.optionId}`;
+            });
         } else {
             addOptionBtn.style.display = "none";
         }
+        
+        // Update add option button status (if max reached)
+        if (optionCount >= MAX_OPTIONS && (qType.value === "Multiple Choice" || qType.value === "Dropdown List")) {
+             addOptionBtn.style.display = "none";
+        }
     }
+
 
     // Add option row
     function addOptionRow() {
@@ -80,8 +112,9 @@ function initializeFormBuilder() {
 
         const control = document.createElement("input");
         control.className = "correct-answer-control";
-        control.type = "radio";
-        control.name = CORRECT_ANSWER_NAME;
+        // Type is determined by updatePreview, initialize as radio
+        control.type = qType.value === "Multiple Choice" ? "radio" : "checkbox"; 
+        control.name = qType.value === "Multiple Choice" ? CORRECT_ANSWER_NAME : `${CORRECT_ANSWER_NAME}_${optionCount}`;
 
         const txt = document.createElement("input");
         txt.type = "text";
@@ -96,6 +129,7 @@ function initializeFormBuilder() {
         delBtn.addEventListener("click", () => {
             row.remove();
             optionCount--;
+            updatePreview(); // Update to re-enable Add Option button if count dropped
         });
 
         const label = document.createElement("small");
@@ -107,13 +141,15 @@ function initializeFormBuilder() {
         row.appendChild(txt);
         row.appendChild(delBtn);
         optionsContainer.appendChild(row);
+        
+        updatePreview(); // Check if max options reached after adding
     }
 
-    // Build question object from current preview
+    // Build question object from current preview (no change needed here)
     function buildQuestionObject() {
         const type = qType.value;
         const questionText = qText.value.trim();
-        const isRequired = requiredSwitch.checked;
+        const isRequired = requiredSwitch.checked; // **Required state is correctly captured here**
         const correctAnswer = type === "Short Text" ? correctAnswerInput.value.trim() : "";
         let options = [];
 
@@ -145,18 +181,23 @@ function initializeFormBuilder() {
 
     // Add question to form
     function addQuestionToForm() {
-        // Validation
+        const type = qType.value;
+        const isRequired = requiredSwitch.checked;
+
+        // 1. Basic Question Text Validation
         if (!qText.value.trim()) {
             showError("Please enter the question text.");
             return;
         }
-
-        if (qType.value === "Short Text" && !correctAnswerInput.value.trim()) {
+        
+        // 2. Short Text Validation (Must have a correct answer for scoring)
+        if (type === "Short Text" && !correctAnswerInput.value.trim()) {
             showError("Please enter the correct answer for the Short Text question.");
             return;
         }
-        
-        if (qType.value !== "Short Text") {
+
+        // 3. Multiple Choice / Dropdown Validation (Must have options and a correct selection)
+        if (type !== "Short Text") {
             const rows = optionsContainer.querySelectorAll(".option-row");
             const isCorrectSelected = optionsContainer.querySelector('.correct-answer-control:checked');
 
@@ -174,7 +215,7 @@ function initializeFormBuilder() {
         const questionObj = buildQuestionObject();
         currentFormQuestions.push(questionObj);
         
-        // Create visual card for display
+        // Create visual card for display (Rest of your existing logic for visual card)
         const card = document.createElement("div");
         card.className = "card p-3 mb-2 saved-question-card";
         card.style.borderRadius = "10px";
@@ -218,21 +259,31 @@ function initializeFormBuilder() {
         // Reset builder
         qText.value = "";
         correctAnswerInput.value = "";
+        // Reset styles and switch
+        boldCheck.checked = false;
+        italicCheck.checked = false;
+        requiredSwitch.checked = true; // Typically a new question defaults to required
+        fontSelect.value = "Arial";
+        styleSettings = { bold: false, italic: false, font: "Arial" };
+        
         optionsContainer.innerHTML = "";
         optionCount = 0;
+        
+        // Ensure preview resets correctly
         updatePreview();
         
         // Show success message
         showSuccess("Question added successfully!");
     }
 
-    // Save form to database - SPECIFIC TO FORM BUILDER
-       // Save form to database - SPECIFIC TO FORM BUILDER
+    // Save form to database - SPECIFIC TO FORM BUILDER (No changes here)
     function saveFormBuilder() {
         const title = document.getElementById('formTitle').value.trim();
         const description = document.getElementById('formDescription').value.trim();
         const status = document.getElementById('formStatus').value;
-loadDatabase();
+        // Make sure loadDatabase, saveDatabase, showError, and showSuccess are defined globally or via sharedAdmin.js
+        if (typeof loadDatabase === 'function') loadDatabase(); 
+        
         if (!title) {
             showError("Please enter a form title.");
             return;
@@ -262,15 +313,14 @@ loadDatabase();
                         text: q.text,
                         type: q.type,
                         required: q.required,
-                        correctAnswer: q.correctAnswer
+                        correctAnswer: q.correctAnswer,
+                        styles: q.styles // Optionally save styles for rendering later
                     };
 
                     if (q.type === "Multiple Choice" || q.type === "Dropdown List") {
                         baseQuestion.options = q.options.map(opt => opt.text);
-                        const correctIndex = q.options.findIndex(opt => opt.correct);
-                        if (correctIndex !== -1) {
-                            baseQuestion.correctOption = q.options[correctIndex].text;
-                        }
+                        const correctOption = q.options.find(opt => opt.correct);
+                        baseQuestion.correctOption = correctOption ? correctOption.text : null;
                     }
 
                     return baseQuestion;
@@ -279,7 +329,7 @@ loadDatabase();
                 // Create form object
                 const now = new Date();
                 const newForm = {
-                    id: window.database.forms.length + 1,
+                    id: (window.database.forms ? window.database.forms.length : 0) + 1, // Safer ID calculation
                     title: title,
                     description: description,
                     status: status,
@@ -289,8 +339,9 @@ loadDatabase();
                 };
 
                 // Add to database
+                if (!window.database.forms) window.database.forms = [];
                 database.forms.push(newForm);
-                saveDatabase();
+                if (typeof saveDatabase === 'function') saveDatabase();
                 
                 // Store the count BEFORE resetting
                 const questionCount = currentFormQuestions.length;
@@ -307,7 +358,12 @@ loadDatabase();
                 document.getElementById('formDescription').value = '';
                 document.getElementById('formStatus').value = 'active';
                 
-                
+                // Reset question builder state
+                qText.value = '';
+                correctAnswerInput.value = '';
+                optionsContainer.innerHTML = '';
+                requiredSwitch.checked = true;
+                updatePreview();
             }
         });
     }
@@ -315,6 +371,7 @@ loadDatabase();
     // Event Listeners
     qText.addEventListener("input", updatePreview);
     qType.addEventListener("change", updatePreview);
+    requiredSwitch.addEventListener("change", updatePreview); // Listen for switch change
     boldCheck.addEventListener("change", () => {
         styleSettings.bold = boldCheck.checked;
         applyStyles(previewText);

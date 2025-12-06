@@ -109,6 +109,15 @@ document.getElementById("submitBtn").addEventListener("click", () => {
     if (!formObj) return;
 
     let correctCount = 0;
+      for (const q of formObj.questions) {
+        if (q.required && (!q.userAnswer || q.userAnswer.trim() === "")) {
+            Swal.fire({
+                icon: "error",
+                title: "Required question",
+                text: `Please answer question ${q.id} before submitting.`
+            });
+            return; // stop submit
+        }}
     formObj.questions.forEach(q => {
         if (q.userAnswer && String(q.userAnswer).trim() === String(q.correctAnswer)) correctCount++;
     });
