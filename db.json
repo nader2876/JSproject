@@ -5,27 +5,27 @@
       "username": "ahmad11",
       "email": "ahmad@gmail.com",
       "password": "ahmad1212",
-      "retype_password":"ahmad1212",
-      "role": "admin"
-    },
-     {
-      "id": 2,
-      "username": "ahmad11",
-      "email": "ahmad@gmail.com",
-      "password": "ahmad1212",
       "retype_password": "ahmad1212",
       "role": "admin"
     },
-     {
+    {
+      "id": 2,
+      "username": "sara22",
+      "email": "sara@gmail.com",
+      "password": "sara1234",
+      "retype_password": "sara1234",
+      "role": "user"
+    },
+    {
       "id": 3,
-      "username": "ahmad11",
-      "email": "ahmad@gmail.com",
-      "password": "ahmad1212",
-      "retype_password":"ahmad1212",
-      "role": "admin"
+      "username": "mohammed33",
+      "email": "mohammed@gmail.com",
+      "password": "momo2025",
+      "retype_password": "momo2025",
+      "role": "user"
     }
-
   ],
+
   "forms": [
     {
       "id": 1,
@@ -37,7 +37,6 @@
           "type": "Multiple Choice",
           "options": ["6", "7", "8", "9"],
           "correctAnswer": "8",
-          "userAnswer": "",
           "required": true
         },
         {
@@ -46,7 +45,6 @@
           "type": "Multiple Choice",
           "options": ["Triangle", "Square", "Circle"],
           "correctAnswer": "Square",
-          "userAnswer": "",
           "required": true
         },
         {
@@ -54,11 +52,9 @@
           "text": "Type the result of 2 + 5",
           "type": "text",
           "correctAnswer": "7",
-          "userAnswer": "",
           "required": true
         }
-      ],
-      "score": 0
+      ]
     },
 
     {
@@ -71,7 +67,6 @@
           "type": "Multiple Choice",
           "options": ["Recieve", "Receive", "Receeve"],
           "correctAnswer": "Receive",
-          "userAnswer": "",
           "required": true
         },
         {
@@ -80,7 +75,6 @@
           "type": "Multiple Choice",
           "options": ["Warm", "Cold", "Cool"],
           "correctAnswer": "Cold",
-          "userAnswer": "",
           "required": true
         },
         {
@@ -88,12 +82,32 @@
           "text": "Write the plural of 'mouse'",
           "type": "text",
           "correctAnswer": "mice",
-          "userAnswer": "",
           "required": true
         }
-      ],
-      "score": 0
+      ]
+    }
+  ],
+
+  "scores": [
+    {
+      "userId": 1,
+      "formId": 1,
+      "score": 2,
+      "answers": {
+        "1": "8",
+        "2": "Square",
+        "3": "7"
+      }
+    },
+    {
+      "userId": 2,
+      "formId": 1,
+      "score": 3,
+      "answers": {
+        "1": "8",
+        "2": "Square",
+        "3": "7"
+      }
     }
   ]
 }
-

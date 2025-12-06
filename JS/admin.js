@@ -91,32 +91,7 @@ function addUser(username, email, password, role) {
 }
 
 
-function openEditUser(id) {
-    const user = database.users.find(u => u.id === id);
 
-    document.getElementById('editUsername').value = user.username;
-    document.getElementById('editEmail').value = user.email;
-    document.getElementById('editPassword').value = user.password;
-    document.getElementById('editRole').value = user.role;
-
-    currentEditingUserId = id;
-    document.getElementById('editUserModal').style.display = 'block';
-}
-
-function saveEditingUser() {
-    const user = database.users.find(u => u.id === currentEditingUserId);
-
-    user.username = document.getElementById('editUsername').value;
-    user.email = document.getElementById('editEmail').value;
-    user.password = document.getElementById('editPassword').value;
-    user.role = document.getElementById('editRole').value;
-
-    saveDatabase();
-    renderUsers();
-
-    document.getElementById('editUserModal').style.display = 'none';
-    showSuccess("User updated successfully");
-}
 
 
 

@@ -17,7 +17,7 @@ function renderUsers() {
                                 <h3 class="user-name">${user.username}</h3>
                             </div>
                             <div>
-                                <button class="btn btn-custom btn-edit" data-id="${user.id}">Edit</button>
+<button class="btn btn-custom btn-edit" data-userid="${user.id}" onclick="window.location.href='edit_user.html?userId='${user.id}'">Edit</button>
                                 <button class="btn btn-custom btn-delete" data-id="${user.id}">Delete</button>
                             </div>
                         </div>
@@ -57,7 +57,11 @@ document.getElementById('users-container').addEventListener('click', function(e)
         deleteUser(userId);
     } else if (e.target.classList.contains('btn-edit')) {
         const userId = Number(e.target.dataset.id);
-        openEditUser(userId);
+        goToEditUser(userId);
     }
 });
    renderUsers();
+   function goToEditUser(userId) {
+    // Navigate to edit page with userId in the URL
+    window.location.href = `edit_user.html?userId=${userId}`;
+}

@@ -24,8 +24,8 @@ function renderForms() {
             <div class="form-left">
                 <h2>#${form.id} &nbsp; ${form.title}</h2><br>
                 <div class="all-buttons">
-                    <button class="btn btn-edit btn-sm me-2" onclick="openEditForm(${form.id})">Edit</button>
-                    <button class="btn btn-scores btn-sm me-2">Scores</button>
+                    <button id="editBtn" class="btn btn-edit btn-sm me-2" onclick="openEditForm(${form.id})">Edit</button>
+                    <button class="btn btn-scores btn-sm me-2 " href="scores.html?formId=${form.id}" data-form-id="${form.id}">Scores</button>
                     <button class="btn btn-delete btn-sm me-2" onclick="deleteForm(${form.id});">Delete</button>
                     <select class="form-select d-inline-block w-auto btn-sm" onchange="changeFormStatus(${form.id}, this.value)">
                         <option value="active" ${form.status === 'active' ? 'selected' : ''}>Active</option>
@@ -42,7 +42,12 @@ function renderForms() {
         </div>`;
     });
 }
-
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('btn-scores')) {
+        const formId = e.target.dataset.formId;
+        window.location.href = `admin_scores_list.html?formId=${formId}`;
+    }
+});
 
 
 function changeFormStatus(formId, newStatus) {
