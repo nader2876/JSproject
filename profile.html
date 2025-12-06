@@ -13,6 +13,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
    <link rel="stylesheet" href="profile.css">
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script defer src="../JS/user_profile.js"></script>
 </head>
 
 <body>
@@ -24,7 +27,7 @@
                 <i class="fa-solid fa-user"></i>
             </div>
             <div class="profile-names">
-                <h2>“Full Name”</h2>
+                <h2 id="topName">“Full Name”</h2>
                 <span>User</span>
             </div>
         </div>
@@ -34,32 +37,26 @@
             <!-- Full Name -->
             <div class="col-md-6">
                 <label class="form-label">Full Name</label>
-                <input type="text" class="form-control-custom" value="“Full Name”" readonly>
+                <input type="text" class="form-control-custom" id="username"  >
             </div>
 
             <!-- Email -->
             <div class="col-md-6">
                 <label class="form-label">Email</label>
-                <input type="email" class="form-control-custom" value="“Email”" readonly>
+                <input type="email" class="form-control-custom" id="email"  >
             </div>
 
             <!-- Password -->
             <div class="col-md-6">
                 <label class="form-label">Password</label>
-                <input type="password" class="form-control-custom" value="************" readonly>
+                <input type="password" class="form-control-custom" id="password"  >
             </div>
 
-            <!-- Mobile -->
-            <div class="col-md-6">
-                <label class="form-label">Mobile</label>
-                <!-- Empty value as per image showing empty box -->
-                <input type="text" class="form-control-custom" value="" readonly>
-            </div>
-        </div>
+     
 
         <!-- Edit Button -->
         <div class="d-flex justify-content-end w-100">
-            <button class="btn btn-edit">Edit</button>
+            <button class="btn btn-edit" id="Edit">Edit</button>
         </div>
     </div>
 

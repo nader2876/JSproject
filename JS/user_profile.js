@@ -1,16 +1,9 @@
-fetch("./db.json")
-    .then(response => response.json())
-    .then(data => {
-        let users = data.users || [];
-
-        if (!localStorage.getItem("users")) {
-            localStorage.setItem("users", JSON.stringify(users));
-        }
-    })
-    .catch(error => console.error("Error loading JSON:", error));
+// Load the full database from localStorage
+const db = JSON.parse(localStorage.getItem("db")) || {};
+const users = db.users || [];
 
 // Get logged user ID
-let currentUserId = Number(localStorage.getItem("currentUserId"));
+const currentUserId = Number(localStorage.getItem("currentUserId"));
 
 if (!currentUserId) {
     Swal.fire({
@@ -18,13 +11,11 @@ if (!currentUserId) {
         title: "Not Logged In",
         text: "Please log in first."
     });
+    throw new Error("Not logged in"); // Stop execution
 }
 
-// Load users
-let users = JSON.parse(localStorage.getItem("users")) || [];
-
 // Find logged user inside users array
-let currentUser = users.find(u => u.id === currentUserId);
+const currentUser = users.find(u => u.id === currentUserId);
 
 if (!currentUser) {
     Swal.fire({
@@ -32,29 +23,35 @@ if (!currentUser) {
         title: "Error",
         text: "User not found."
     });
+    throw new Error("User not found"); // Stop execution
 }
 
-// Fill fields
+// Fill input fields
 document.getElementById("username").value = currentUser.username || "";
 document.getElementById("email").value = currentUser.email || "";
 document.getElementById("password").value = currentUser.password || "";
+document.getElementById("topName").textContent = currentUser.username || "FullName";
 
 // Save changes
 document.getElementById("Edit").addEventListener("click", function () {
-    let newUsername = document.getElementById("username").value.trim();
-    let newEmail = document.getElementById("email").value.trim();
-    let newPassword = document.getElementById("password").value.trim();
+    const newUsername = document.getElementById("username").value.trim();
+    const newEmail = document.getElementById("email").value.trim();
+    const newPassword = document.getElementById("password").value.trim();
 
     // Update only changed fields
-    if (newUsername) currentUser.username = newUsername;
+    if (newUsername) {
+        currentUser.username = newUsername;
+        document.getElementById("topName").textContent = currentUser.username;
+    }
     if (newEmail) currentUser.email = newEmail;
     if (newPassword) {
         currentUser.password = newPassword;
         currentUser.retypePassword = newPassword;
     }
 
-    // Save updated users array
-    localStorage.setItem("users", JSON.stringify(users));
+    // Save updated users array back into the full db
+    db.users = users;
+    localStorage.setItem("db", JSON.stringify(db));
 
     Swal.fire({
         icon: "success",
@@ -62,3 +59,4 @@ document.getElementById("Edit").addEventListener("click", function () {
         text: "Profile updated successfully."
     });
 });
+

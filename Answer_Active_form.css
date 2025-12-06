@@ -100,6 +100,31 @@
             font-weight: 400;
         }
 
+        .btn-begin {
+    background-color: #7A2E2E; /* Dark brown color */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 40px;
+    font-size: 1rem;
+    font-weight: 400;
+    transition: background-color 0.2s;
+    min-width: 120px;
+    cursor: pointer;
+}
+
+.btn-begin:hover {
+    background-color: #612323; /* Slightly darker on hover */
+    color: white;
+}
+
+.btn-begin:active {
+    background-color: #612323; 
+    color: white;
+}
+
+        
+
         /* Responsive */
         @media (max-width: 768px) {
             .main-card {

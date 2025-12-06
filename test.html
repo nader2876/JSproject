@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Show JSON Data</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    h2 {
+      margin-top: 20px;
+      color: #333;
+    }
+    pre {
+      background-color: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 10px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #eee;
+    }
+  </style>
+</head>
+<body>
+  <h1>JSON Data Viewer</h1>
+
+  <div id="usersSection">
+    <h2>Users</h2>
+    <table id="usersTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Username</th>
+          <th>Password</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <div id="formsSection">
+    <h2>Forms</h2>
+    <pre id="formsJson"></pre>
+  </div>
+
+  <script>
+    fetch('db.json')
+      .then(response => {
+        if (!response.ok) throw new Error('Failed to fetch db.json');
+        return response.json();
+      })
+      .then(data => {
+        console.log('JSON fetched:', data);
+
+        // Display users in table
+        const usersTbody = document.querySelector('#usersTable tbody');
+        data.users.forEach(user => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `<td>${user.id}</td><td>${user.username}</td><td>${user.password}</td>`;
+          usersTbody.appendChild(tr);
+        });
+
+        // Display forms as formatted JSON
+        const formsPre = document.getElementById('formsJson');
+        formsPre.textContent = JSON.stringify(data.forms, null, 2);
+      })
+      .catch(error => {
+        console.error('Error fetching JSON:', error);
+        alert('Failed to load JSON. See console.');
+      });
+  </script>
+</body>
+</html>

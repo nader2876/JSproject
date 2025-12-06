@@ -1,16 +1,4 @@
-// Load initial data from db.json if localStorage is empty
-fetch("db.json")
-    .then(response => response.json()) // response.json() converts the downloaded file into real JavaScript data.
-    .then(data => {
-        let users = data.users || [];
-        if (!localStorage.getItem("users")) {
-            localStorage.setItem("users", JSON.stringify(users));
-        }
-    })
-    .catch(error => console.error("Error loading JSON:", error));
-
 document.getElementById("registerForm").addEventListener("submit", function(e) {
-
     e.preventDefault();
 
     let username = document.getElementById("username").value.trim();
@@ -18,53 +6,50 @@ document.getElementById("registerForm").addEventListener("submit", function(e) {
     let password = document.getElementById("password").value.trim();
     let retypePassword = document.getElementById("retype_password").value.trim();
 
+    // Load the full database from localStorage
+    let db = JSON.parse(localStorage.getItem("db")) || {};
+    if (!db.users) db.users = []; // ensure users array exists
+
     // Helper function for SweetAlert error
     function showError(message) {
         Swal.fire({
             icon: 'error',
-            title: 'Error Occured...',
+            title: 'Error Occurred...',
             text: message
         });
     }
 
-    // Check all fields are filled
+    // Validation
     if (!username || !email || !password || !retypePassword) {
         showError("Please fill all fields!");
         return;
     }
 
-    // Username: letters only
     let usernameRegex = /^[A-Za-z\u0600-\u06FF\s]+$/;
     if (!usernameRegex.test(username)) {
         showError("Username must contain letters only.");
         return;
     }
 
-    // Email regex
     let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
         showError("Invalid email address.");
         return;
     }
 
-    // Password regex: 6-20 chars, at least 1 letter and 1 number
     let passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,20}$/;
     if (!passwordRegex.test(password)) {
         showError("Password must be 6-20 characters and include letters and numbers.");
         return;
     }
 
-    // Check passwords match
     if (password !== retypePassword) {
         showError("Passwords do not match.");
         return;
     }
 
-    // Load users from localStorage
-    let users = JSON.parse(localStorage.getItem("users")) || []; // Converts string → object , Used after reading from localStorage .
-
-    // Check if email exists
-    if (users.some(user => user.email === email)) {
+    // Check if email already exists in db.users
+    if (db.users.some(user => user.email === email)) {
         showError("Email already registered.");
         return;
     }
@@ -75,27 +60,23 @@ document.getElementById("registerForm").addEventListener("submit", function(e) {
         username: username,
         email: email,
         password: password,
-        retypePassword:retypePassword,
-        role:"user"
+        role: "user"
     };
 
-    users.push(newUser);
-    localStorage.setItem("users", JSON.stringify(users)); // localstorge can only store string  , Converts object → string , Used before saving to localStorage.
+    // Add to the users array inside db
+    db.users.push(newUser);
 
-
+    // Save the full database back to localStorage
+    localStorage.setItem("db", JSON.stringify(db));
 
     Swal.fire({
         icon: 'success',
         title: 'Success!',
         text: 'Account created successfully!'
-
     }).then(() => {
-    // Redirect after clicking OK
-    window.location.href = "Login.html";
+        // Redirect to login
+        window.location.href = "Login.html";
+    });
 });
 
-  
-    
-  
-});
 

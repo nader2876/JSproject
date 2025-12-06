@@ -1,15 +1,4 @@
-fetch("db.json")
-    .then(response => response.json())
-    .then(data => {
-        let users = data.users || [];
 
-        if (!localStorage.getItem("users")) {
-            localStorage.setItem("users", JSON.stringify(users));
-        }
-    })
-    .catch(error => console.error("Error loading JSON:", error));
-
-let users = JSON.parse(localStorage.getItem("users")) || [];
 
 function showError(message) {
     Swal.fire({
@@ -35,6 +24,9 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
     let username = document.getElementById("username").value.trim();
     let password = document.getElementById("password").value.trim();
 
+    let db = JSON.parse(localStorage.getItem("db"));
+    let users = db.users || [];
+
     let foundUser = users.find(u => u.username === username);
 
     if (!foundUser) {
@@ -51,13 +43,9 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
 
     // ⬅️ Save ONLY the user ID inside localStorage
     localStorage.setItem("currentUserId", foundUser.id);
-
-    setTimeout(() => {
-        if (foundUser.role === "admin") {
-            window.location.href = "admin-home.html";
-        } else {
-            window.location.href = "user-home.html";
-        }
-    }, 1500);
+     localStorage.setItem("currentUserRole", foundUser.role);
+  setTimeout(() => {
+    window.location.href = "main.html"; // same page for everyone
+}, 1500);
 });
 
