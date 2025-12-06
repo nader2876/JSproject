@@ -431,7 +431,6 @@ function addUser(username, email, password, role) {
 }
 
 function deleteUser(id) {
-<<<<<<< HEAD
 
  Swal.fire({
         title: 'Are you sure?',
@@ -445,13 +444,10 @@ function deleteUser(id) {
     }).then((result) => {
         if (result.isConfirmed) {
          
-=======
->>>>>>> 96dd978 (Add new pages, update styles, and JS scripts)
     database.users = database.users.filter(user => user.id !== id);
     saveDatabase();
     renderUsers();
     showSuccess("User deleted successfully");
-<<<<<<< HEAD
         }
     });
 
@@ -468,9 +464,6 @@ document.getElementById('users-container').addEventListener('click', function(e)
         openEditUser(userId);
     }
 });
-=======
-}
->>>>>>> 96dd978 (Add new pages, update styles, and JS scripts)
 
 function openEditUser(id) {
     const user = database.users.find(u => u.id === id);
@@ -559,11 +552,7 @@ function openAddForm() {
     document.getElementById('addFormModal').style.display = 'block';
 }
 
-<<<<<<< HEAD
 function addForm() { 
-=======
-function addForm() {
->>>>>>> 96dd978 (Add new pages, update styles, and JS scripts)
     const title = document.getElementById('formTitle').value;
     const description = document.getElementById('formDescription').value;
     const status = document.getElementById('formStatus').value;
@@ -581,7 +570,6 @@ function addForm() {
         questions: []
     };
 
-<<<<<<< HEAD
 
     database.forms.push(newForm);
     saveDatabase();
@@ -612,30 +600,6 @@ function openEditForm(id) {
 function saveEditingForm() {
     const form = database.forms.find(f => f.id === currentEditingFormId);
 
-=======
-    database.forms.push(newForm);
-    saveDatabase();
-    renderForms();
-
-    document.getElementById('addFormModal').style.display = 'none';
-    showSuccess("Form added successfully!");
-}
-
-function openEditForm(id) {
-    const form = database.forms.find(f => f.id === id);
-
-    document.getElementById('editFormTitle').value = form.title;
-    document.getElementById('editFormDescription').value = form.description;
-    document.getElementById('editFormStatus').value = form.status;
-
-    currentEditingFormId = id;
-    document.getElementById('editFormModal').style.display = 'block';
-}
-
-function saveEditingForm() {
-    const form = database.forms.find(f => f.id === currentEditingFormId);
-
->>>>>>> 96dd978 (Add new pages, update styles, and JS scripts)
     form.title = document.getElementById('editFormTitle').value;
     form.description = document.getElementById('editFormDescription').value;
     form.status = document.getElementById('editFormStatus').value;
@@ -716,10 +680,6 @@ function deleteQuestion(id) {
     showSuccess("Question deleted successfully!");
 }
 
-<<<<<<< HEAD
  //create form events
 
  
-=======
- console.log(database);
->>>>>>> 96dd978 (Add new pages, update styles, and JS scripts)
