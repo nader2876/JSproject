@@ -33,60 +33,67 @@
       "questions": [
         {
           "id": 1,
-          "question": "What is 5 + 3?",
-          "type": "mcq",
-          "choices": ["6", "7", "8", "9"],
+          "text": "What is 5 + 3?",
+          "type": "Multiple Choice",
+          "options": ["6", "7", "8", "9"],
           "correctAnswer": "8",
-          "userAnswer": ""
+          "userAnswer": "",
+          "required": true
         },
         {
           "id": 2,
-          "question": "Which shape has 4 equal sides?",
-          "type": "mcq",
-          "choices": ["Triangle", "Square", "Circle"],
+          "text": "Which shape has 4 equal sides?",
+          "type": "Multiple Choice",
+          "options": ["Triangle", "Square", "Circle"],
           "correctAnswer": "Square",
-          "userAnswer": ""
+          "userAnswer": "",
+          "required": true
         },
         {
           "id": 3,
-          "question": "Type the result of 2 + 5",
+          "text": "Type the result of 2 + 5",
           "type": "text",
           "correctAnswer": "7",
-          "userAnswer": ""
+          "userAnswer": "",
+          "required": true
         }
       ],
       "score": 0
     },
+
     {
       "id": 2,
       "title": "English Test",
       "questions": [
         {
           "id": 1,
-          "question": "Choose the correct spelling:",
-          "type": "mcq",
-          "choices": ["Recieve", "Receive", "Receeve"],
+          "text": "Choose the correct spelling:",
+          "type": "Multiple Choice",
+          "options": ["Recieve", "Receive", "Receeve"],
           "correctAnswer": "Receive",
-          "userAnswer": ""
+          "userAnswer": "",
+          "required": true
         },
         {
           "id": 2,
-          "question": "The opposite of 'hot' is:",
-          "type": "mcq",
-          "choices": ["Warm", "Cold", "Cool"],
+          "text": "The opposite of 'hot' is:",
+          "type": "Multiple Choice",
+          "options": ["Warm", "Cold", "Cool"],
           "correctAnswer": "Cold",
-          "userAnswer": ""
+          "userAnswer": "",
+          "required": true
         },
         {
           "id": 3,
-          "question": "Write the plural of 'mouse'",
+          "text": "Write the plural of 'mouse'",
           "type": "text",
           "correctAnswer": "mice",
-          "userAnswer": ""
+          "userAnswer": "",
+          "required": true
         }
       ],
       "score": 0
     }
-  ],
-  "scores": []
+  ]
 }
+

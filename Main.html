@@ -225,6 +225,7 @@ document.getElementById("goLogin").onclick = function () {
 document.addEventListener("DOMContentLoaded", () => {
     const navbarContainer = document.getElementById("navbarContainer");
 
+    // Templates for logged-in navbars
     const userNavbar = `
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Interview-Q</a>
@@ -265,31 +266,35 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `;
 
-    // ✅ Get current logged user
+    // Read login info
     const currentUserId = Number(localStorage.getItem("currentUserId"));
     const currentUserRole = localStorage.getItem("currentUserRole");
 
-    if (currentUserId && currentUserRole) {
-        // Logged in
-        navbarContainer.innerHTML = (currentUserRole === "admin") ? adminNavbar : userNavbar;
+  if (currentUserId && currentUserRole) {
+    // Logged in
+    navbarContainer.innerHTML = (currentUserRole === "admin") ? adminNavbar : userNavbar;
 
-        // Show username
-        const users = JSON.parse(localStorage.getItem("users")) || [];
-        const currentUser = users.find(u => u.id === currentUserId);
-        if (currentUser) {
-            document.getElementById("usernameDisplay").textContent = currentUser.username;
-        }
+    // Show username
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const currentUser = users.find(u => u.id === currentUserId);
+    if (currentUser) {
+        document.getElementById("usernameDisplay").textContent = currentUser.username;
+    }
 
-        // Logout
-        document.getElementById("logoutBtn").onclick = function () {
-            localStorage.removeItem("currentUserId");
-            localStorage.removeItem("currentUserRole");
-            window.location.href = "main.html";
-        };
+    // Hide hero Register button
+    const heroRegisterBtn = document.getElementById("goRegister2");
+    if (heroRegisterBtn) heroRegisterBtn.style.display = "none";
 
-    } else {
-        // Not logged in, show default navbar with Register/Login buttons
-        navbarContainer.innerHTML = `
+    // Logout
+    document.getElementById("logoutBtn").onclick = function () {
+        localStorage.removeItem("currentUserId");
+        localStorage.removeItem("currentUserRole");
+        window.location.href = "main.html";
+    };
+
+} else {
+    // Not logged in
+    navbarContainer.innerHTML = `
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Interview-Q</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
@@ -306,12 +311,18 @@ document.addEventListener("DOMContentLoaded", () => {
               </ul>
             </div>
         </div>
-        `;
+    `;
 
-        document.getElementById("goRegister").onclick = () => window.location.href = "register.html";
-        document.getElementById("goLogin").onclick = () => window.location.href = "login.html";
-    }
+    // Show hero Register button
+    const heroRegisterBtn = document.getElementById("goRegister2");
+    if (heroRegisterBtn) heroRegisterBtn.style.display = "inline-block";
+
+    // Reattach navbar events
+    document.getElementById("goRegister").onclick = () => window.location.href = "register.html";
+    document.getElementById("goLogin").onclick = () => window.location.href = "Login.html";
+}
 });
+
 
 
 
