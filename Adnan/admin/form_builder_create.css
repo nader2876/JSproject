@@ -228,6 +228,16 @@
     height: 36px;
 }
 
+.logout-btn i {
+    font-size: 28px;
+    color: #b10000;   /* Red logout icon */
+}
+
+.logout-btn i:hover {
+    color: #ff4d4d;
+    cursor: pointer;
+}
+
 
 
 

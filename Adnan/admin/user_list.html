@@ -33,9 +33,12 @@
 
         <!-- ================= Sidebar ================= -->
         <div class="sidebar d-flex flex-column align-items-center">
-            <a href="#" class="sidebar-links"><i class="bi bi-table" id="forms_table"></i></a>
-            <a href="#" class="sidebar-links"><i class="bi bi-person" id="forms_table"></i></a>
-
+            <a href="forms_table_preview.html" class="sidebar-links"><i class="bi bi-table" id="forms_table"></i></a>
+            <a href="user_list.html" class="sidebar-links"><i class="bi bi-person" id="forms_table"></i></a>
+              <!-- Logout Icon -->
+    <a href="#" class="sidebar-links logout-btn mt-auto">
+        <i class="bi bi-box-arrow-right"></i>
+    </a>
         </div>
 
         <!-- ================= Main Content ================= -->
@@ -63,7 +66,30 @@
 <script src="../../JS/sharedAdmin.js"></script>
 
 <script src="../../JS/userList.js"></script>
+ <script>
+    document.querySelector(".logout-btn").addEventListener("click", function () {
 
+    Swal.fire({
+        title: "Logout?",
+        text: "Are you sure you want to logout?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, Logout",
+        cancelButtonText: "Cancel"
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+            // Clear all user data
+            localStorage.clear();
+            sessionStorage.clear();
+
+            // Redirect to login page
+            window.location.href = "/Main.html";
+        }
+    });
+
+});
+   </script>
 </body>
 
 </html>

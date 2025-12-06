@@ -57,6 +57,11 @@ document.getElementById("Edit").addEventListener("click", function () {
         icon: "success",
         title: "Updated!",
         text: "Profile updated successfully."
-    });
+    })
+        .then(() => {
+    // Redirect to another page after OK
+    window.location.href = "/Main.html"; // <-- put your page here
+});
+    
 });
 

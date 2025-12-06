@@ -221,10 +221,21 @@ document.getElementById("goRegister2").onclick = function () {
 document.getElementById("goLogin").onclick = function () {
     window.location.href = "Login.html";
 };
+document.addEventListener("DOMContentLoaded", () => {
+    const currentUserRole = localStorage.getItem("currentUserRole");
+
+    // ✔ Admin Redirect here (correct place)
+    if (currentUserRole === "admin") {
+        window.location.href = "/Adnan/admin/form_builder_create.html";
+        return;
+    }
+
+    const navbarContainer = document.getElementById("navbarContainer");
+    });
 
 document.addEventListener("DOMContentLoaded", () => {
     const navbarContainer = document.getElementById("navbarContainer");
-
+  
     // Templates for logged-in navbars
     const userNavbar = `
       <div class="container-fluid">
@@ -237,7 +248,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <li class="nav-item"><a class="nav-link active" href="Active_forms.html">Forms</a></li>
             <li class="nav-item"><a class="nav-link active" href="#About">About Us</a></li>
             <li class="nav-item"><a class="nav-link" href="#Services">Services</a></li>
-            <li class="nav-item"><a class="nav-link" href="#Testimonials">Testimonials</a></li>
+            <li class="nav-item"><a class="nav-link" href="profile.html">Profile</a></li>
             <li class="nav-item"><a class="nav-link" href="#Contact">Contact</a></li>
             <li class="nav-item"><span id="usernameDisplay" class="nav-link"></span></li>
             <li class="nav-item"><button class="sig" id="logoutBtn">Log Out</button></li>
@@ -246,25 +257,7 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `;
 
-    const adminNavbar = `
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Interview-Q</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navMenu">
-          <ul class="navbar-nav ms-auto align-items-center">
-            <li class="nav-item"><a class="nav-link active" href="Adnan/admin/user_list.html">Dashboard</a></li>
-            <li class="nav-item"><a class="nav-link active" href="#About">About Us</a></li>
-            <li class="nav-item"><a class="nav-link" href="#Services">Services</a></li>
-            <li class="nav-item"><a class="nav-link" href="#Testimonials">Testimonials</a></li>
-            <li class="nav-item"><a class="nav-link" href="#Contact">Contact</a></li>
-            <li class="nav-item"><span id="usernameDisplay" class="nav-link"></span></li>
-            <li class="nav-item"><button class="sig" id="logoutBtn">Log Out</button></li>
-          </ul>
-        </div>
-      </div>
-    `;
+   
 
     // Read login info
     const currentUserId = Number(localStorage.getItem("currentUserId"));

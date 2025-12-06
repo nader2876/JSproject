@@ -85,7 +85,15 @@
      font-weight: 600;
  }
 
+.logout-btn i {
+    font-size: 28px;
+    color: #b10000;   /* Red logout icon */
+}
 
+.logout-btn i:hover {
+    color: #ff4d4d;
+    cursor: pointer;
+}
 
  .sidebar-links {
      margin-bottom: 20px;
