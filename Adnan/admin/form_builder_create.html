@@ -1,55 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forms Builder</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <link rel="stylesheet" href="form_builder_create.css">
 </head>
+
 <body>
+
     <div class="d-flex">
+
         <div class="sidebar d-flex flex-column align-items-center">
             <a href="#" class="sidebar-links"><i class="bi bi-table" id="forms_table"></i></a>
             <a href="#" class="sidebar-links"><i class="bi bi-person" id="forms_table"></i></a>
+
         </div>
 
         <div class="flex-grow-1 p-4">
+
             <div class="main-box">
+
                 <h5 style="color:#792C29; font-weight:500;">Form Builder / Create New Form</h5>
+
                 <div class="row mt-3">
+
                     <div class="col-lg-5 col-md-12 mb-3">
+
                         <form id="form-info">
+
                             <div class="mb-3">
                                 <label for="formTitle" class="form-label">Title</label>
                                 <input type="text" class="form-control" id="formTitle" placeholder="Enter form title">
                             </div>
+
                             <div class="mb-3">
                                 <label for="formDescription" class="form-label">Description</label>
-                                <textarea class="form-control" id="formDescription" rows="4" placeholder="Enter description"></textarea>
+                                <textarea class="form-control" id="formDescription" rows="4"
+                                    placeholder="Enter description"></textarea>
                             </div>
+
                             <div class="mb-3">
                                 <label for="formStatus" class="form-label">Form Status</label>
-                                <select class="form-select" id="formStatus">
+                              
+                                  <select class="form-select" id="formStatus">
                                     <option value="active">Active (visible to users)</option>
                                     <option value="inactive">Inactive</option>
-                                </select>
+                                   </select>
+                               
                             </div>
+
                         </form>
+
                     </div>
 
                     <div class="col-lg-7 col-md-12">
+
                         <form id="question-builder">
+
                             <h6 style="font-weight:500;">Add Question</h6>
+
                             <div class="mb-3">
                                 <label for="questionText" class="form-label">Question Text</label>
                                 <input type="text" class="form-control" id="questionText" placeholder="Enter question">
                             </div>
+
                             <div class="row mb-3 g-3">
+
                                 <div class="col-md-4">
                                     <label for="questionType" class="form-label">Type</label>
                                     <select class="form-select" id="questionType">
@@ -58,12 +82,14 @@
                                         <option>Dropdown List</option>
                                     </select>
                                 </div>
+
                                 <div class="col-md-4 d-flex align-items-center">
                                     <div class="form-check form-switch mt-4">
                                         <input class="form-check-input" type="checkbox" id="requiredSwitch" checked>
                                         <label class="form-check-label" for="requiredSwitch">Required</label>
                                     </div>
                                 </div>
+
                                 <div class="col-md-4">
                                     <label for="fontSelect" class="form-label">Font</label>
                                     <select class="form-select" id="fontSelect">
@@ -72,7 +98,9 @@
                                         <option>Other</option>
                                     </select>
                                 </div>
+
                             </div>
+
                             <div class="mb-3">
                                 <label class="form-label">Text Formatting</label>
                                 <div class="form-check form-check-inline ms-2">
@@ -84,37 +112,56 @@
                                     <label class="form-check-label" for="italicCheck">Italic</label>
                                 </div>
                             </div>
+
                             <div class="mb-3" id="correctAnswerWrapper" style="display: none;">
                                 <label for="correctAnswerInput" class="form-label text-success fw-bold">Correct Answer</label>
-                                <input type="text" class="form-control border-success" id="correctAnswerInput" placeholder="Enter the correct answer for Short Text">
+                                <input type="text" class="form-control border-success" id="correctAnswerInput"
+                                    placeholder="Enter the correct answer for Short Text">
                             </div>
-                            <div class="card p-3 mb-3" id="questionPreview" style="background:#fff; border-radius:12px;">
+
+                            <div class="card p-3 mb-3" id="questionPreview"
+                                style="background:#fff; border-radius:12px;">
+
                                 <div class="d-flex justify-content-between align-items-center mb-2">
                                     <p class="mb-0" id="previewText">Question will appear here</p>
-                                    <button type="button" class="btn btn-primary btn-sm" id="addQuestionToFormBtn">Add Question</button>
+                                    <button type="button" class="btn btn-primary btn-sm" id="addQuestionToFormBtn">Add
+                                        Question</button>
                                 </div>
+
                                 <input type="text" class="form-control mb-2" placeholder="Answer" id="previewAnswer" style="display: none;">
+
                                 <div id="optionsContainer"></div>
-                                <button type="button" class="btn btn-outline-secondary mt-2" id="addOptionBtn">Add Option</button>
+
+                                <button type="button" class="btn btn-outline-secondary mt-2" id="addOptionBtn">Add
+                                    Option</button>
                             </div>
+
                             <div class="card p-3" id="formQuestionsCard" style="background:#fff; border-radius:12px;">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
                                     <h6 class="mb-0">Questions in this form</h6>
                                     <button type="button" class="btn btn-brown" id="saveFormBtn">Save Form</button>
                                 </div>
-                                <div id="questionsList"></div>
+
+                                <div id="questionsList">
+                                    </div>
                             </div>
+
+
                         </form>
+
                     </div>
+
                 </div>
+
             </div>
         </div>
+
     </div>
     
-    <!-- Main form builder script -->
-    <script src="form_builder.js"></script>
-    
-    <!-- Your existing admin.js if needed -->
-    <script src="../../JS/admin.js"></script>
+    <script src="../../JS/sharedAdmin.js"></script>
+<script src="../../JS/createForms.js"></script>
+
+
 </body>
+
 </html>
