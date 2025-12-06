@@ -14,12 +14,12 @@ body {
   height: 100vh;
 }
 
-
+/* ===== Left Section ===== */
 .left {
   width: 55%;
-  background: white;
   position: relative;
   overflow: hidden;
+  background: white;
 }
 
 .left-shape {
@@ -27,14 +27,8 @@ body {
   height: 100%;
   background: #C2B3B3;
   position: absolute;
-  z-index: 1;
   border-radius: 5px;
-  clip-path: polygon(
-    0 0, 
-    70% 0,
-    100% 50%,
-    50% 100%,
-    0 100%);
+  clip-path: polygon(0 0, 70% 0, 100% 50%, 50% 100%, 0 100%);
 }
 
 .corner {
@@ -48,23 +42,19 @@ body {
   display: flex;
   justify-content: left;
   align-items: start;
-  z-index: 20;
 }
 
 .corner span {
-    margin: 15px;
+  margin: 15px;
   color: white;
   font-size: 20px;
   font-weight: bold;
-  text-align: left;
-  line-height: 1;
 }
 
-
 .content {
-  padding: 40px;
   position: relative;
   z-index: 10;
+  padding: 40px;
   margin-left: 120px;
   margin-top: 120px;
   color: white;
@@ -86,10 +76,14 @@ body {
   margin-top: 40px;
 }
 
+/* ===== Right Section ===== */
 .right {
   width: 45%;
   background: #C2B3B3;
   padding: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .right h2 {
@@ -115,12 +109,12 @@ input {
 .forget {
   font-size: 14px;
   color: white;
-  
+  text-decoration: none;
+  margin-bottom: 20px;
 }
+
 .forget:hover {
-  font-size: 14px;
   color: #792C29;
-  
 }
 
 button {
@@ -131,11 +125,23 @@ button {
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  margin: 25px 0;
+  margin-top: 25px;
 }
 
-.copy {
-  font-size: 13px;
-  color: #333;
-  margin-top: 60px;
+/* ===== Responsive ===== */
+@media (max-width: 992px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .left, .right {
+    width: 100%;
+    padding: 50px;
+  }
+
+  .content {
+    margin-left: 0;
+    margin-top: 50px;
+    text-align: center;
+  }
 }

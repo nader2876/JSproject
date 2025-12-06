@@ -5,12 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
   <link rel="stylesheet" href="../css/Login.css">
-      <!-- SweetAlert2 -->
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <script defer src="../JS/login.js"></script>
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script defer src="../JS/login.js"></script>
 </head>
 <body>
 
@@ -19,11 +18,7 @@
   <!-- Left Section -->
   <div class="left">
     <div class="left-shape"></div>
-
-    <div class="corner">
-        <span>Interview-Q</span>
-    </div>
-
+    <div class="corner"><span>Interview-Q</span></div>
     <div class="content">
       <h1>Welcome Back!</h1>
       <p>Access and Answer Forms Easily.<br>Responses Will Be Saved Securely!</p>
@@ -31,28 +26,20 @@
     </div>
   </div>
 
-
+  <!-- Right Section (Login Form) -->
   <form class="right" id="loginForm">
     <h2>Log In</h2>
 
-    <label>Username</label>
-    <input type="text"id="username" placeholder="username" required>
+    <label for="username">Username</label>
+    <input type="text" id="username" placeholder="Username" required>
 
-    <label>Password</label>
-    <input type="password"id="password"placeholder="password" required>
-    <div>
-
-
-
+    <label for="password">Password</label>
+    <input type="password" id="password" placeholder="Password" required>
 
     <a href="#" class="forget">Forgot Password?</a>
-     <br>
 
     <button type="submit">Log In</button>
-
-
-  </div>
-
+  </form>
 
 </div>
 

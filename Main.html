@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
-    <link rel="stylesheet" href="../css/Main.css">
+  <link rel="stylesheet" href="../css/Main.css">
 </head>
 <body>
+
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary" id="navbarContainer">
   <div class="container-fluid">
 
-    <a class="navbar-brand" href="#">Interview-Q</a>
+    <a class="navbar-brand" href="#">Interview-Qs</a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
       <span class="navbar-toggler-icon"></span>
@@ -289,43 +295,215 @@ document.addEventListener("DOMContentLoaded", () => {
     // Not logged in
     navbarContainer.innerHTML = `
         <div class="container-fluid">
+=======
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+>>>>>>> 49dd71029c58828e1dbf578bdcee5692036d49db
             <a class="navbar-brand" href="#">Interview-Q</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-              <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navMenu">
-              <ul class="navbar-nav ms-auto align-items-center">
-                <li class="nav-item"><a class="nav-link active" href="#About">About Us</a></li>
-                <li class="nav-item"><a class="nav-link" href="#Services">Services</a></li>
-                <li class="nav-item"><a class="nav-link" href="#Testimonials">Testimonials</a></li>
-                <li class="nav-item"><a class="nav-link" href="#Contact">Contact</a></li>
-                <button class="Log" id="goRegister">Register</button>
-                <button class="sig" id="goLogin">Log In</button>
-              </ul>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#reviews">Testimonials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                        <button class="btn btn-nav-secondary">Log In</button>
+                    </li>
+                    <li class="nav-item mt-2 mt-lg-0">
+                        <button class="btn btn-nav-primary">Register</button>
+                    </li>
+                </ul>
             </div>
         </div>
-    `;
+    </nav>
 
-    // Show hero Register button
-    const heroRegisterBtn = document.getElementById("goRegister2");
-    if (heroRegisterBtn) heroRegisterBtn.style.display = "inline-block";
 
-    // Reattach navbar events
-    document.getElementById("goRegister").onclick = () => window.location.href = "register.html";
-    document.getElementById("goLogin").onclick = () => window.location.href = "Login.html";
-}
+
+  <div class="hero">
+    <video autoplay loop muted playsinline class="bg-video" src="assest/main.mp4"></video>
+    <div class="content_hero">
+      <h1>Practice Real Interview Questions Created By Companies. Register, Answer Forms, And Track Your Progress</h1>
+      <button class="btn_Register" id="goRegister2">Register Now</button>
+    </div>
+  </div>
+
+  <div class="icon_company">
+    <img src="../assest/microsoft_PNG19 1.png" alt="microsoft">
+    <img src="../assest/openAi.png" alt="openAi">
+    <img src="../assest/orang.png" alt="orange">
+    <img src="../assest/q2impact.png" alt="q2impact">
+    <img src="../assest/Amazon_logo.svg 1.png" alt="Amazon">
+  </div>
+
+  <section class="about-section" id="About">
+    <div class="about-text">
+      <h2>About Us</h2>
+      <p>
+        Our platform connects individuals with real assessment experiences inspired by modern hiring processes.
+        Companies create interview forms, and users answer them to improve skills and readiness.
+      </p>
+    </div>
+    <div class="a_img">
+      <div class="about-image">
+        <img src="../assest/about_img.png" alt="About Us">
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="section-padding services-section">
+    <div class="container">
+      <h2 class="section-title">Services</h2>
+      <p class="services-subtitle">Create forms, answer questions, and view results—all in one place.</p>
+
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+
+          <div class="swiper-slide">
+            <div class="service-card">
+              <img src="assest/Serveices2.png" alt="">
+              <h3 class="service-title">Professional Assessments</h3>
+              <p class="service-desc">Tools for companies to create professional assessments.</p>
+              <ul class="service-list">
+                <li>Create or deactivate forms</li>
+                <li>Review answers from candidates</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="service-card">
+              <img src="assest/Serveices.png" alt="">
+              <h3 class="service-title">Improve Your Interview Skills</h3>
+              <p class="service-desc">Practice with real interview-style forms.</p>
+              <ul class="service-list">
+                <li>Answer real interview-style forms</li>
+                <li>Practice multiple question types</li>
+                <li>Track your progress</li>
+                <li>Save your best scores</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="service-card">
+              <img src="assest/Serveices3.png" alt="">
+              <h3 class="service-title">Why Choose Us?</h3>
+              <p class="service-desc">A modern solution for modern problems.</p>
+              <ul class="service-list">
+                <li>Easy to use</li>
+                <li>Modern UI</li>
+                <li>Realistic interview simulation</li>
+                <li>Fast and secure</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="service-card">
+              <img src="assest/Serveices.png" alt="">
+              <h3 class="service-title">Community Driven</h3>
+              <p class="service-desc">Join thousands of users practicing daily.</p>
+              <ul class="service-list">
+                <li>Share insights</li>
+                <li>Community support</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="reviews-section container my-5" id="Testimonials">
+    <h2 class="reviews-title text-center">Reviews</h2>
+    <div class="row align-items-center mt-4">
+      <div class="col-md-5 text-center">
+        <img class="review-img" src="../assest/Reviews_img.png" alt="">
+      </div>
+      <div class="col-md-7">
+        <p class="review-text">More than 200 users practiced interview questions here.  <br> “This platform helped me land my dream job by simulating the exact pressure of a real technical interview.”</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer mt-5" id="Contact">
+    <div class="container py-5">
+      <div class="row justify-content-between">
+        <div class="col-md-4">
+          <h4 class="footer-title">Interview-Q</h4>
+          <p class="footer-text">
+            We focus on clarity, fairness, and helping people grow through meaningful assessments.
+          </p>
+        </div>
+        <div class="col-md-3">
+          <h5 class="footer-subtitle">Useful Links</h5>
+          <ul class="footer-links">
+            <li><a href="#About">About</a></li>
+            <li><a href="#Services">Services</a></li>
+            <li><a href="#Testimonials">Testimonials</a></li>
+            <li><a href="#Contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h5 class="footer-subtitle">Contact Us</h5>
+          <p class="footer-text">interview@demo.com</p>
+          <p class="footer-text">+962 786832492</p>
+        </div>
+      </div>
+
+      <div class="social-icons">
+        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+      </div>
+      <p class="text-center mt-3 footer-copy">© 2025 Interview-Q. All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+  <script>
+const swiper = new Swiper(".mySwiper", {
+  slidesPerView: 1,
+  spaceBetween: 30,
+  loop: true,
+  autoplay: {
+    delay: 3000,     
+    disableOnInteraction: false, 
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  breakpoints: {
+    768: { slidesPerView: 2 },
+    992: { slidesPerView: 3 }
+  }
 });
 
-
-
-
-
-
-
-
-
-
-</script>
+    document.getElementById("goRegister2").onclick = () => window.location.href = "register.html";
+  </script>
 
 </body>
 </html>
