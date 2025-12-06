@@ -1,0 +1,108 @@
+body {
+            background-color: #EDEDEB;
+            /* Light grey background matching image */
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .page-title {
+            color: #8B3A3A;
+            /* Dark brownish-red */
+            font-size: 1.75rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            padding-left: 10px;
+        }
+
+        .edit-card {
+            background: white;
+            border-radius: 25px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            /* Soft shadow */
+            border: none;
+            max-width: 600px;
+            /* Constrain card width */
+            margin: 0 auto;
+            /* Center the card */
+            position: relative;
+        }
+
+        .user-icon {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .user-icon i {
+            font-size: 3rem;
+            color: black;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .form-control {
+            background-color: #F8F9FA;
+            /* Very light grey input bg */
+            border: 1px solid transparent;
+            border-radius: 12px;
+            padding: 0.8rem 1rem;
+            font-size: 0.9rem;
+            color: #7d716c;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            background-color: #fff;
+            border: 1px solid black;
+            box-shadow: none;
+        }
+
+        /* Input specific spacing */
+        .input-group-custom {
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-save {
+            background-color: #397e29;
+            /* Teal green */
+            border: none;
+            color: white;
+            padding: 0.7rem 3rem;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: transform 0.2s;
+            margin-top: 1rem;
+        }
+
+        .btn-save:hover {
+            background-color: #266424;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .edit-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .page-title {
+                text-align: center;
+                margin-bottom: 1.5rem;
+            }
+        }
