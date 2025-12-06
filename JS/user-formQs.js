@@ -5,7 +5,10 @@ if (!selectedTitle) {
     throw new Error("No selected test title in localStorage");
 }
 
-document.getElementById("formTitle").textContent = selectedTitle;
+document.getElementById("formTitle").innerHTML = `${selectedTitle} <p style="font-weight: bold; color: #2c3e50; background-color: #ecf0f1; 
+          padding: 8px 12px; border-radius: 6px; display: inline-block; 
+          margin-bottom: 15px; font-family: Arial, sans-serif; margin-left: 95px;">Test started at: <span id="startTimeDisplay">--</span></p>
+ `;
 
 // Load forms data from main database in localStorage
 const db = JSON.parse(localStorage.getItem("db")) || {};
@@ -45,7 +48,7 @@ function renderForm() {
 
         const qTitle = document.createElement("div");
         qTitle.className = "question-label-box";
-        qTitle.innerHTML = `<strong>Q${q.id}.</strong> ${escapeHtml(q.text)}`; // use q.text
+        qTitle.innerHTML = `<strong>Q${q.id}.</strong> ${escapeHtml(q.text)} `; // use q.text
         qbox.appendChild(qTitle);
 
         const choicesDiv = document.createElement("div");
@@ -163,6 +166,28 @@ document.getElementById("submitBtn").addEventListener("click", () => {
     window.location.href = "main.html"; // Adjust path if needed
 });
 
+});
+async function setTestStartTime() {
+    try {
+        const res = await fetch("https://worldtimeapi.org/api/ip");
+        const data = await res.json();
+
+        const startTime = new Date(data.datetime);
+        localStorage.setItem("testStartTime", startTime.toISOString());
+
+        document.getElementById("startTimeDisplay").textContent = startTime.toLocaleString();
+    } catch (err) {
+        console.error("Could not get internet time, using local time instead.");
+        const startTime = new Date();
+        localStorage.setItem("testStartTime", startTime.toISOString());
+        document.getElementById("startTimeDisplay").textContent = startTime.toLocaleString();
+    }
+}
+
+// Call this once at the start of the test
+
+document.addEventListener('DOMContentLoaded', () => {
+    setTestStartTime();
 });
 
 
