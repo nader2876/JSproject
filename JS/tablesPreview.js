@@ -45,9 +45,15 @@ function renderForms() {
 document.addEventListener('click', function(e) {
     if (e.target.classList.contains('btn-scores')) {
         const formId = e.target.dataset.formId;
-        window.location.href = `admin_scores_list.html?formId=${formId}`;
+        const form = database.forms.find(f => f.id == formId);
+        if (!form) return;
+
+        // Pass title in URL
+        const formTitle = encodeURIComponent(form.title);
+        window.location.href = `admin_scores_list.html?formTitle=${formTitle}`;
     }
 });
+
 
 
 function changeFormStatus(formId, newStatus) {
@@ -66,11 +72,13 @@ function changeFormStatus(formId, newStatus) {
     showSuccess(`Form status changed to ${newStatus}`);
 }
 
-function openAddForm() {
-    document.getElementById('addFormModal').style.display = 'block';
+function openEditForm(id) {
+    localStorage.setItem("currentFormId", id);
+    window.location.href = "/Adnan/admin/edit_form.html"; 
 }
 
-function openEditForm(id) {
+// new change
+/*function openEditForm(id) {
     // Make sure database is loaded
     if (!database.forms) {
         showError('Database not loaded yet');
@@ -85,8 +93,24 @@ function openEditForm(id) {
     document.getElementById('editFormStatus').value = form.status;
 
     currentEditingFormId = id;
-    document.getElementById('editFormModal').style.display = 'block';
+   function openEditForm(id) {
+    if (!database.forms) { showError('Database not loaded yet'); return; }
+    
+    const form = database.forms.find(f => f.id === id);
+    if (!form) return;
+
+    document.getElementById('editFormTitle').value = form.title;
+    document.getElementById('editFormDescription').value = form.description;
+    document.getElementById('editFormStatus').value = form.status;
+
+    currentEditingFormId = id;
+
+    // Show modal using Bootstrap
+    const modal = new bootstrap.Modal(document.getElementById('editFormModal'));
+    modal.show();
 }
+
+}*/
 
 function saveEditingForm() {
     // Make sure database is loaded
@@ -107,6 +131,7 @@ function saveEditingForm() {
 
     document.getElementById('editFormModal').style.display = 'none';
     showSuccess("Form updated successfully!");
+    
 }
 
 function deleteForm(id) {
