@@ -1,82 +1,67 @@
-// Get formId from URL
-const urlParams = new URLSearchParams(window.location.search);
-const currentViewingFormId = Number(urlParams.get('formId'));
-
 document.addEventListener('DOMContentLoaded', () => {
-    initializeDatabase().then(() => {
-        renderScoresTable(); // now database is loaded
-    });
+    // Read test name from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const testName = urlParams.get('formTitle');
+    if (!testName) {
+        document.getElementById("scoresContainer").innerHTML = "<p>No test selected</p>";
+        return;
+    }
+
+    // Fetch database
+    fetch('/db.json') // adjust path if needed
+        .then(response => response.json())
+        .then(database => {
+            renderScoresTable(database, testName);
+        })
+        .catch(error => {
+            console.error("Failed to fetch database:", error);
+            document.getElementById("scoresContainer").innerHTML = "<p>Error loading database</p>";
+        });
 });
 
-function renderScoresTable() {
+function renderScoresTable(database, testName) {
     const container = document.getElementById("scoresContainer");
-    if (!container) return;
-
     container.innerHTML = "";
 
-    const formId = currentViewingFormId;
-    if (!formId) {
-        container.innerHTML = "<p>No form selected</p>";
-        return;
-    }
-
-    // FIND THE ACTUAL FORM FROM DATABASE
-    const form = database.forms.find(f => f.id === formId);
-    
+    // Find form by title (case-insensitive)
+    const form = database.forms.find(f => f.title.toLowerCase() === testName.toLowerCase());
     if (!form) {
-        container.innerHTML = "<p>Form not found</p>";
+        container.innerHTML = `<p>No form found with the name "${testName}"</p>`;
         return;
     }
 
-    // Check if scores exist in database
-    if (!database.scores) {
-        database.scores = []; // Initialize if doesn't exist
-    }
-
-    const formScores = database.scores.filter(s => s.formId === formId);
-
-    // INSERT FORM TITLE FROM DATABASE
+    // Form title
     container.insertAdjacentHTML("beforeend", `
-        <div class="test-header">
+        <div class="test-header mb-3 fw-bold">
             #${form.id} &nbsp; ${form.title}
         </div>
     `);
 
+    // Filter scores for this form
+    const formScores = database.scores.filter(s => s.formId === form.id);
     if (formScores.length === 0) {
-        container.insertAdjacentHTML("beforeend", `
-            <div class="score-row">
-                <p class="text-center">No scores yet for this form</p>
-            </div>
-        `);
+        container.insertAdjacentHTML("beforeend", `<p>No scores yet for this form</p>`);
         return;
     }
 
-    // INSERT SCORES
     formScores.forEach(score => {
-        // Find the user for this score
         const user = database.users.find(u => u.id === score.userId);
-        
-        if (!user) {
-            console.log('User not found for score:', score);
-            return;
-        }
+        if (!user) return;
 
         const totalQuestions = form.questions.length;
         const passed = score.score >= totalQuestions / 2;
 
         container.insertAdjacentHTML("beforeend", `
-            <div class="score-row">
-                <div class="user-section">
-                    <i class="fa-solid fa-user user-icon"></i>
-                    <h5 class="user-name">${user.username}</h5>
+            <div class="score-row d-flex justify-content-between align-items-center p-2 border-bottom">
+                <div class="user-section d-flex align-items-center">
+                    <i class="fa-solid fa-user user-icon me-2"></i>
+                    <h5 class="user-name mb-0">${user.username}</h5>
                 </div>
-
                 <div class="status-section ${passed ? "text-success-custom" : "text-danger-custom"}">
                     ${passed ? "Pass" : "Fail"} &nbsp; ${score.score}/${totalQuestions}
                 </div>
-
                 <div>
-                    <button class="btn btn-review" data-user="${user.id}" data-form="${form.id}">
+                    <button class="btn btn-sm btn-review" data-user="${user.id}" data-form="${form.id}">
                         Review Answers
                     </button>
                 </div>
@@ -84,3 +69,4 @@ function renderScoresTable() {
         `);
     });
 }
+
