@@ -90,40 +90,6 @@ function addUser(username, email, password, role) {
     renderUsers();
 }
 
-function deleteUser(id) {
-
- Swal.fire({
-        title: 'Are you sure?',
-        text: "Do you want to permanently delete this form?",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'Cancel'
-    }).then((result) => {
-        if (result.isConfirmed) {
-         
-    database.users = database.users.filter(user => user.id !== id);
-    saveDatabase();
-    renderUsers();
-    showSuccess("User deleted successfully");
-        }
-    });
-
-
-
-
-}
-document.getElementById('users-container').addEventListener('click', function(e) {
-    if (e.target.classList.contains('btn-delete')) {
-        const userId = Number(e.target.dataset.id);
-        deleteUser(userId);
-    } else if (e.target.classList.contains('btn-edit')) {
-        const userId = Number(e.target.dataset.id);
-        openEditUser(userId);
-    }
-});
 
 function openEditUser(id) {
     const user = database.users.find(u => u.id === id);

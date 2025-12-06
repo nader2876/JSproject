@@ -1,3 +1,4 @@
+// -------------------- SweetAlert Helpers --------------------
 function showError(message) {
     Swal.fire({
         icon: 'error',
@@ -16,73 +17,96 @@ function showSuccess(message) {
     });
 }
 
-// Database Loading
+// -------------------- Database Loading --------------------
 let currentEditingUserId = null;
 let currentEditingFormId = null;
-let database = { users: [], forms: [] }; // Initialize with empty structure
+let database = { users: [], forms: [] }; // default empty DB
 
-// Initialize database
-function initializeDatabase() {
-    return new Promise((resolve) => {
-        fetch('../../db.json')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to fetch db.json');
-                }
-                return response.json();
-            })
-            .then(jsonData => {
-                if (!localStorage.getItem('db')) {
-                    localStorage.setItem('db', JSON.stringify(jsonData));
-                    console.log('Database initialized from JSON');
-                }
-                loadDatabase();
-                resolve(database);
-            })
-            .catch(error => {
-                console.error('Error loading database:', error);
-                // Initialize empty database
-                database = {
-                    users: [],
-                    forms: []
-                };
-                // Check if we have data in localStorage
-                loadDatabase();
-                localStorage.setItem('db', JSON.stringify(database));
-                resolve(database);
-            });
-    });
+// Helper: Validate DB structure
+function isValidDB(data) {
+    return data && typeof data === 'object' && Array.isArray(data.users) && Array.isArray(data.forms);
 }
 
+// Load database from localStorage
 function loadDatabase() {
     const raw = localStorage.getItem('db');
     if (raw) {
         try {
             const parsed = JSON.parse(raw);
-            database.users = parsed.users || [];
-            database.forms = parsed.forms || [];
-            console.log('Database loaded from localStorage:', database);
+            if (isValidDB(parsed)) {
+                database.users = parsed.users;
+                database.forms = parsed.forms;
+                console.log('Database loaded from localStorage:', database);
+                window.database = database;
+                return true; // localStorage is valid
+            } else {
+                console.warn('Invalid DB structure in localStorage. Ignoring it.');
+            }
         } catch (e) {
             console.error('Error parsing localStorage data:', e);
-            database = { users: [], forms: [] };
         }
-    } else {
-        database = { users: [], forms: [] };
     }
-    // Make database globally accessible
-    window.database = database;
+    return false; // localStorage missing or invalid
 }
 
+// Initialize database (localStorage → JSON fallback)
+function initializeDatabase() {
+    return new Promise((resolve) => {
+        // 1️ Try localStorage first
+        if (loadDatabase()) {
+            console.log('Using database from localStorage');
+            resolve(database);
+            return;
+        }
+
+        // 2️⃣ Otherwise, fetch db.json from same folder
+        fetch('../../db.json')
+            .then(response => {
+                if (!response.ok) throw new Error('Failed to fetch db.json');
+                return response.json();
+            })
+            .then(jsonData => {
+                if (isValidDB(jsonData)) {
+                    database = jsonData;
+                    localStorage.setItem('db', JSON.stringify(database));
+                    console.log('Database initialized from JSON:', database);
+                } else {
+                    console.warn('db.json has invalid structure. Initializing empty DB.');
+                    database = { users: [], forms: [] };
+                    localStorage.setItem('db', JSON.stringify(database));
+                }
+                window.database = database;
+
+                // Log full object clearly
+                console.log('Full database object:', database);
+                console.log('Full database formatted:\n', JSON.stringify(database, null, 2));
+
+                resolve(database);
+            })
+            .catch(error => {
+                console.error('Error fetching db.json:', error);
+                // fallback to empty DB
+                database = { users: [], forms: [] };
+                localStorage.setItem('db', JSON.stringify(database));
+                window.database = database;
+                resolve(database);
+            });
+    });
+}
+
+// Save database to localStorage
 function saveDatabase() {
     localStorage.setItem('db', JSON.stringify(database));
 }
 
-// Initialize database on page load
-document.addEventListener('DOMContentLoaded', function() {
+// -------------------- On page load --------------------
+document.addEventListener('DOMContentLoaded', function () {
+ 
     initializeDatabase().then(() => {
+        
         // Only render forms if we're on the forms page
         if (document.getElementById('formsTable')) {
-            renderForms();
+            renderForms(); // your existing function
         }
     });
 });
