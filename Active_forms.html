@@ -76,7 +76,7 @@
   // Clear existing cards (optional if hardcoded HTML exists)
   container.innerHTML = "";
 
-  forms.forEach(form => { if(form.status=='active'){
+  forms.forEach(form => {
     const card = document.createElement("div");
     card.className = "form-card"; // keep your CSS class
     card.innerHTML = `
@@ -91,7 +91,7 @@
       </div>
     `;
     container.appendChild(card);
- } });
+  });
 
   // Delegate click to all Begin buttons
   container.addEventListener("click", (ev) => {
