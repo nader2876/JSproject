@@ -60,54 +60,58 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
   // Load forms from localStorage db
-  const db = JSON.parse(localStorage.getItem("db")) || {};
-  const forms = db.forms || [];
+const db = JSON.parse(localStorage.getItem("db")) || {};
+const forms = db.forms || [];
 
-  const container = document.querySelector(".col-lg-10"); // container where form cards go
+const container = document.querySelector(".col-lg-10");
 
-  if (forms.length === 0) {
-    Swal.fire({
-      icon: "info",
-      title: "No Forms",
-      text: "No forms are available at the moment."
-    });
-  }
+// Clear existing cards
+container.innerHTML = "";
 
-  // Clear existing cards (optional if hardcoded HTML exists)
-  container.innerHTML = "";
+// Filter only ACTIVE forms
+const activeForms = forms.filter(f => f.status === "active");
 
-  forms.forEach(form => {
-    const card = document.createElement("div");
-    card.className = "form-card"; // keep your CSS class
-    card.innerHTML = `
-      <div class="card-content">
-        <h3 class="card-title">${escapeHtml(form.title)}</h3>
-        <p class="card-description">
-          ${escapeHtml(form.description || "No description provided.")}
-        </p>
-      </div>
-      <div>
-        <button class="btn btn-begin" data-title="${escapeHtml(form.title)}">Begin</button>
-      </div>
-    `;
-    container.appendChild(card);
+if (activeForms.length === 0) {
+  container.innerHTML = `
+    <p class="text-center mt-4" style="color:#888; font-size:18px;">
+      No active forms available at the moment.
+    </p>
+  `;
+}
+
+activeForms.forEach(form => {
+  const card = document.createElement("div");
+  card.className = "form-card";
+  card.innerHTML = `
+    <div class="card-content">
+      <h3 class="card-title">${escapeHtml(form.title)}</h3>
+      <p class="card-description">
+        ${escapeHtml(form.description || "No description provided.")}
+      </p>
+    </div>
+    <div>
+      <button class="btn btn-begin" data-title="${escapeHtml(form.title)}">Begin</button>
+    </div>
+  `;
+  container.appendChild(card);
+});
+
+// Begin button handler
+container.addEventListener("click", (ev) => {
+  const btn = ev.target.closest("button.btn-begin");
+  if (!btn) return;
+  const title = btn.getAttribute("data-title");
+  localStorage.setItem("selectedTestTitle", title);
+  window.location.href = "Answer_Active_form.html";
+});
+
+function escapeHtml(str) {
+  if (!str) return "";
+  return String(str).replace(/[&<>"']/g, function(m) {
+    return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m];
   });
+}
 
-  // Delegate click to all Begin buttons
-  container.addEventListener("click", (ev) => {
-    const btn = ev.target.closest("button.btn-begin");
-    if (!btn) return;
-    const title = btn.getAttribute("data-title");
-    localStorage.setItem("selectedTestTitle", title);
-    window.location.href = "Answer_Active_form.html"; // navigate to questions page
-  });
-
-  function escapeHtml(str) {
-    if (!str) return "";
-    return String(str).replace(/[&<>"']/g, function(m) {
-      return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m];
-    });
-  }
 </script>
 
 </body>

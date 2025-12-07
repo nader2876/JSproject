@@ -17,6 +17,7 @@ function renderForms() {
         table.innerHTML = '<p class="text-center">No forms found. Create your first form!</p>';
         return;
     }
+    
 
     database.forms.forEach(form => {
         table.innerHTML += `
